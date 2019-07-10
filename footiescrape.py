@@ -26,5 +26,6 @@ toparse = ["player","position","age","games","game_starts","game_subs","minutes"
 findplayers = parsepage.find_all('th',attrs={"data-stat":"player"})
 for player in findplayers:
     addplayer = player.find_next('a').get_text()
-    playerlist.append(player)
+    if addplayer not in playerlist and addplayer != 'coverage note':
+        playerlist.append(addplayer)
 print(playerlist)
