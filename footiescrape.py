@@ -15,4 +15,4 @@ parsepage = bsoup(page.content, 'html.parser')
 toparse = ["player","position","age","games","game_starts","game_subs","minutes","minutes_per_game"]
 findplayers = parsepage.find_all('th',attrs={"data-stat":"player"})
 for player in findplayers:
-    print( item.find_next('a') )
+    print(player.find_next('a').get_text())
