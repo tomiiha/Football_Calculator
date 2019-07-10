@@ -11,8 +11,19 @@ page = reqs.get("https://fbref.com/en/squads/986a26c1/Northampton-Town")
 status = page.status_code
 parsepage = bsoup(page.content, 'html.parser')
 
+# Lists
+playerlist = []
+positionlist = []
+agelist = []
+gamesplayedlist = []
+gamestartslist = []
+gamesubslist = []
+minuteslist = []
+minutespgamelist = []
+
 # Elements to ultimately find in toparse - gen player list off of findplayers
 toparse = ["player","position","age","games","game_starts","game_subs","minutes","minutes_per_game"]
 findplayers = parsepage.find_all('th',attrs={"data-stat":"player"})
-for player in findplayers:
+for name in findplayers:
+    playerlist.append(player)
     print(player.find_next('a').get_text())
