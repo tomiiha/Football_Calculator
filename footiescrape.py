@@ -13,5 +13,6 @@ parsepage = bsoup(page.content, 'html.parser')
 
 # Elements to ultimately find in toparse - gen player list off of findplayers
 toparse = ["player","position","age","games","game_starts","game_subs","minutes","minutes_per_game"]
-findplayers = parsepage.find_all('th',attrs={"data-stat":"player"}).find_next('a')
-print(findplayers)
+findplayers = parsepage.find_all('th',attrs={"data-stat":"player"})
+for player in findplayers:
+    print( item.find_next('a') )
