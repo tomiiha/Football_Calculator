@@ -25,5 +25,6 @@ minutespgamelist = []
 toparse = ["player","position","age","games","game_starts","game_subs","minutes","minutes_per_game"]
 findplayers = parsepage.find_all('th',attrs={"data-stat":"player"})
 for name in findplayers:
+    addplayer = print(player.find_next('a').get_text())
     playerlist.append(player)
-    print(player.find_next('a').get_text())
+print(playerlist)
