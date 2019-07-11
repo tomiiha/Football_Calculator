@@ -5,6 +5,11 @@
 
 from bs4 import BeautifulSoup as bsoup
 import requests as reqs
+import xlsxwriter as xsl
+
+# Load data file to use
+workbook = xsl.workbook('Ndata1819.xlsx')
+worksheet = workbook.add_worksheet()
 
 # Capture website
 page = reqs.get("https://fbref.com/en/squads/986a26c1/Northampton-Town")
@@ -29,3 +34,13 @@ for player in findplayers:
     if addplayer not in playerlist and addplayer != 'coverage note':
         playerlist.append(addplayer)
 print(playerlist)
+
+# Data writing into excel file - insert lists to designated columns A1 onward
+#startrow = 0
+#startcol = 0
+#for (one,two,three) in zip(addplayer,addposition,addage):
+    #worksheet.write(startrow, startcol, one)
+    #worksheet.write(startrow, startcol + 1, two)
+    #worksheet.write(startrow, startcol + 2, three)
+    #row += 1
+workbook.close()
