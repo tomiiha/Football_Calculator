@@ -27,8 +27,10 @@ minuteslist = []
 minutespgamelist = []
 
 # Elements to ultimately find in toparse - gen player list off of findplayers
-toparse = ["player","position","age","games","game_starts","game_subs","minutes","minutes_per_game"]
-findplayers = parsepage.find_all('th',attrs={"data-stat":"player"})
+# Actual toparse list below, enact for full dataset build
+#toparse = ["player","position","age","games","game_starts","game_subs","minutes","minutes_per_game"]
+toparse = ["player"]
+findplayers = parsepage.find_all('th',attrs={"data-stat":toparse})
 for player in findplayers:
     addplayer = player.find_next('a').get_text()
     if addplayer not in playerlist and addplayer != 'coverage note':
