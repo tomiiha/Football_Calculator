@@ -8,7 +8,7 @@ import requests as reqs
 import xlsxwriter as xsl
 
 # Load data file to use
-workbook = xsl.workbook('Ndata1819.xlsx')
+workbook = xsl.Workbook('Ndata1819.xlsx')
 worksheet = workbook.add_worksheet()
 
 # Capture website
