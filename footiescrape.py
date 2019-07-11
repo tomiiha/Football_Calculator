@@ -64,4 +64,4 @@ for player in addplayer:
 workbook.close()
 
 # Status notice
-print(str(workbookname + " created successfully")
+print(str(workbookname) + " created successfully")
