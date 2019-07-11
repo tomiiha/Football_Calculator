@@ -40,8 +40,10 @@ startrow = 0
 startcol = 0
 for header in toparse:
     worksheet.write(startrow, startcol, header)
+    startcol += 1
 startrow = 1
+startcol = 0
 for player in addplayer:
     worksheet.write(startrow, startcol, one)
-    row += 1
+    startrow += 1
 workbook.close()
