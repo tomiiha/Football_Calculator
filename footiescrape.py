@@ -14,6 +14,7 @@ worksheet = workbook.add_worksheet()
 
 # Status notice
 print("Workbook " + str(workbookname) + " created")
+print("")
 
 # Capture website
 pagetoparse = 'https://fbref.com/en/squads/986a26c1/Northampton-Town'
@@ -23,6 +24,7 @@ parsepage = bsoup(page.content, 'html.parser')
 
 # Status notice
 print("Parsing: " + str(pagetoparse))
+print("")
 
 # Lists
 playerlist = []
@@ -36,6 +38,7 @@ minutespgamelist = []
 
 # Status notice
 print("Creating dataset")
+print("")
 
 # Elements to ultimately find in toparse - gen player list off of findplayers
 # Actual toparse list below, enact for full dataset build
@@ -49,6 +52,7 @@ for player in findplayers:
 
 # Status notice
 print("Dataset created - adding to Excel sheet")
+print("")
 
 # Data writing into excel file - insert lists to designated columns A1 onward
 startrow = 0
