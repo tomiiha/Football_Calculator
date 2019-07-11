@@ -44,6 +44,6 @@ for header in toparse:
 startrow = 1
 startcol = 0
 for player in addplayer:
-    worksheet.write(startrow, startcol, one)
+    worksheet.write(startrow, startcol, player)
     startrow += 1
 workbook.close()
