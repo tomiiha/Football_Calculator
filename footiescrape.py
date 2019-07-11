@@ -64,4 +64,4 @@ for player in addplayer:
 workbook.close()
 
 # Status notice
-print("Excel sheet created and saved")
+print(str(workbookname + " created successfully")
