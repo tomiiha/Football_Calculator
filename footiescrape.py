@@ -1,5 +1,3 @@
-# https://codeburst.io/web-scraping-101-with-python-beautiful-soup-bb617be1f486
-# https://www.dataquest.io/blog/web-scraping-tutorial-python/
 # Note: https://fbref.com/robots.txt
 # Start with https://fbref.com/en/squads/986a26c1/Northampton-Town
 
@@ -7,8 +5,12 @@ from bs4 import BeautifulSoup as bsoup
 import requests as reqs
 import xlsxwriter as xsl
 
+# Which season (YYYY format) to gen and, which URL to parse
+season = 1819
+pagetoparse = 'https://fbref.com/en/squads/986a26c1/Northampton-Town'
+
 # Load data file to use
-workbookname = 'Ndata1819.xlsx'
+workbookname = 'Ndata' + str(season) + '.xlsx'
 workbook = xsl.Workbook(workbookname)
 worksheet = workbook.add_worksheet()
 
@@ -17,7 +19,6 @@ print("Workbook " + str(workbookname) + " created")
 print("")
 
 # Capture website
-pagetoparse = 'https://fbref.com/en/squads/986a26c1/Northampton-Town'
 page = reqs.get(pagetoparse)
 status = page.status_code
 parsepage = bsoup(page.content, 'html.parser')
