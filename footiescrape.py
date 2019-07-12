@@ -110,9 +110,46 @@ for header in toparse:
     startcol += 1
 startrow = 1
 startcol = 0
-for player in addplayer:
+for player in playerlist:
     worksheet.write(startrow, startcol, player)
     startrow += 1
+startrow = 1
+startcol = 1
+for var in positionlist:
+    worksheet.write(startrow, startcol, var)
+    startrow += 1
+startrow = 1
+startcol = 2
+for var in agelist:
+    worksheet.write(startrow, startcol, var)
+    startrow += 1
+startrow = 1
+startcol = 3
+for var in gameslist:
+    worksheet.write(startrow, startcol, var)
+    startrow += 1
+startrow = 1
+startcol = 4
+for var in gamestartslist:
+    worksheet.write(startrow, startcol, var)
+    startrow += 1
+startrow = 1
+startcol = 5
+for var in gamesubslist:
+    worksheet.write(startrow, startcol, var)
+    startrow += 1
+startrow = 1
+startcol = 6
+for var in minuteslist:
+    worksheet.write(startrow, startcol, var)
+    startrow += 1
+startrow = 1
+startcol = 7
+for var in minutespgamelist:
+    worksheet.write(startrow, startcol, var)
+    startrow += 1
+    
+# Finish Excel creation
 workbook.close()
 
 # Status notice
