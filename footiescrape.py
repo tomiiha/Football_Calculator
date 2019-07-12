@@ -63,10 +63,10 @@ findinfo = parsepage.find_all('td',attrs={"data-stat":'age'})
 
 # Create positionlist - non-unique
 findinfo = parsepage.find_all('td',attrs={"data-stat":'games'})
-    for position in findinfo:
-        addposition = position.get_text()
-        if addposition != 'coverage note':
-            positionlist.append(addposition)
+    for games in findinfo:
+        addgames = games.get_text()
+        if addgames != 'coverage note':
+            gameslist.append(addgames)
 
 # Create positionlist - non-unique
 findinfo = parsepage.find_all('td',attrs={"data-stat":'game_starts'})
