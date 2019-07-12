@@ -30,11 +30,12 @@ print("")
 playerlist = []
 positionlist = []
 agelist = []
-gamesplayedlist = []
+gameslist = []
 gamestartslist = []
 gamesubslist = []
 minuteslist = []
 minutespgamelist = []
+toparse = ["player","position","age","games","game_starts","game_subs","minutes","minutes_per_game"]
 
 # Status notice
 print("Creating dataset")
@@ -42,59 +43,59 @@ print("")
 
 # Create playerlist - unique instances
 findplayers = parsepage.find_all('th',attrs={"data-stat":"player"})
-    for player in findplayers:
-        addplayer = player.find_next('a').get_text()
-        if addplayer not in playerlist and addplayer != 'coverage note':
-            playerlist.append(addplayer)
+for player in findplayers:
+    addplayer = player.find_next('a').get_text()
+    if addplayer not in playerlist and addplayer != 'coverage note':
+        playerlist.append(addplayer)
             
 # Create positionlist - non-unique
 findinfo = parsepage.find_all('td',attrs={"data-stat":'position'})
-    for position in findinfo:
-        addposition = position.get_text()
-        if addposition != 'coverage note':
-            positionlist.append(addposition)
+for position in findinfo:
+    addposition = position.get_text()
+    if addposition != 'coverage note':
+        positionlist.append(addposition)
 
 # Create positionlist - non-unique
 findinfo = parsepage.find_all('td',attrs={"data-stat":'age'})
-    for age in findinfo:
-        addage = age.get_text()
-        if addage != 'coverage note':
-            agelist.append(addage)
+for age in findinfo:
+    addage = age.get_text()
+    if addage != 'coverage note':
+        agelist.append(addage)
 
 # Create positionlist - non-unique
 findinfo = parsepage.find_all('td',attrs={"data-stat":'games'})
-    for games in findinfo:
-        addgames = games.get_text()
-        if addgames != 'coverage note':
-            gameslist.append(addgames)
+for games in findinfo:
+    addgames = games.get_text()
+    if addgames != 'coverage note':
+        gameslist.append(addgames)
 
 # Create positionlist - non-unique
 findinfo = parsepage.find_all('td',attrs={"data-stat":'game_starts'})
-    for gamestart in findinfo:
-        addstart = gamestart.get_text()
-        if addstart != 'coverage note':
-            gamestartslist.append(addgamestarts)
+for gamestart in findinfo:
+    addstart = gamestart.get_text()
+    if addstart != 'coverage note':
+        gamestartslist.append(addstart)
 
 # Create positionlist - non-unique
 findinfo = parsepage.find_all('td',attrs={"data-stat":'game_subs'})
-    for subs in findinfo:
-        addgamesubs = subs.get_text()
-        if addgamesubs != 'coverage note':
-            gamesubslist.append(addgamesubs)
+for subs in findinfo:
+    addgamesubs = subs.get_text()
+    if addgamesubs != 'coverage note':
+        gamesubslist.append(addgamesubs)
 
 # Create positionlist - non-unique
 findinfo = parsepage.find_all('td',attrs={"data-stat":'minutes'})
-    for mins in findinfo:
-        addminutes = mins.get_text()
-        if addminutes != 'coverage note':
-            minuteslist.append(addminutes)
+for mins in findinfo:
+    addminutes = mins.get_text()
+    if addminutes != 'coverage note':
+        minuteslist.append(addminutes)
 
 # Create positionlist - non-unique
 findinfo = parsepage.find_all('td',attrs={"data-stat":'minutes_per_game'})
-    for minsp in findinfo:
-        addminutespgame = minsp.get_text()
-        if addminutespgame != 'coverage note':
-            minutespgamelist.append(addminutespgame)
+for minsp in findinfo:
+    addminutespgame = minsp.get_text()
+    if addminutespgame != 'coverage note':
+        minutespgamelist.append(addminutespgame)
             
 # Status notice
 print("Dataset created - adding to Excel sheet")
