@@ -6,6 +6,7 @@ import requests as reqs
 import xlsxwriter as xsl
 
 # Which season (YYYY format) to gen and, which URL to parse
+# Season used for file name - nothing fancy
 season = 1819
 pagetoparse = 'https://fbref.com/en/squads/986a26c1/Northampton-Town'
 
