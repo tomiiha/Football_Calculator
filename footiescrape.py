@@ -77,24 +77,24 @@ findinfo = parsepage.find_all('td',attrs={"data-stat":'game_starts'})
 
 # Create positionlist - non-unique
 findinfo = parsepage.find_all('td',attrs={"data-stat":'game_subs'})
-    for position in findinfo:
-        addposition = position.get_text()
-        if addposition != 'coverage note':
-            positionlist.append(addposition)
+    for subs in findinfo:
+        addgamesubs = subs.get_text()
+        if addgamesubs != 'coverage note':
+            gamesubslist.append(addgamesubs)
 
 # Create positionlist - non-unique
 findinfo = parsepage.find_all('td',attrs={"data-stat":'minutes'})
-    for position in findinfo:
-        addposition = position.get_text()
-        if addposition != 'coverage note':
-            positionlist.append(addposition)
+    for mins in findinfo:
+        addminutes = mins.get_text()
+        if addminutes != 'coverage note':
+            minuteslist.append(addminutes)
 
 # Create positionlist - non-unique
 findinfo = parsepage.find_all('td',attrs={"data-stat":'minutes_per_game'})
-    for position in findinfo:
-        addposition = position.get_text()
-        if addposition != 'coverage note':
-            positionlist.append(addposition)
+    for minsp in findinfo:
+        addminutespgame = minsp.get_text()
+        if addminutespgame != 'coverage note':
+            minutespgamelist.append(addminutespgame)
             
 # Status notice
 print("Dataset created - adding to Excel sheet")
