@@ -57,42 +57,42 @@ for position in findinfo:
     if addposition != 'coverage note':
         positionlist.append(addposition)
 
-# Create positionlist - non-unique
+# Create agelist - non-unique
 findinfo = parsepage.find_all('td',attrs={"data-stat":'age'})
 for age in findinfo:
     addage = age.get_text()
     if addage != 'coverage note':
         agelist.append(addage)
 
-# Create positionlist - non-unique
+# Create gameslist - non-unique
 findinfo = parsepage.find_all('td',attrs={"data-stat":'games'})
 for games in findinfo:
     addgames = games.get_text()
     if addgames != 'coverage note':
         gameslist.append(addgames)
 
-# Create positionlist - non-unique
+# Create gamestartlist - non-unique
 findinfo = parsepage.find_all('td',attrs={"data-stat":'game_starts'})
 for gamestart in findinfo:
     addstart = gamestart.get_text()
     if addstart != 'coverage note':
         gamestartslist.append(addstart)
 
-# Create positionlist - non-unique
+# Create gamesubslist - non-unique
 findinfo = parsepage.find_all('td',attrs={"data-stat":'game_subs'})
 for subs in findinfo:
     addgamesubs = subs.get_text()
     if addgamesubs != 'coverage note':
         gamesubslist.append(addgamesubs)
 
-# Create positionlist - non-unique
+# Create minuteslist - non-unique
 findinfo = parsepage.find_all('td',attrs={"data-stat":'minutes'})
 for mins in findinfo:
     addminutes = mins.get_text()
     if addminutes != 'coverage note':
         minuteslist.append(addminutes)
 
-# Create positionlist - non-unique
+# Create minutespgamelist - non-unique
 findinfo = parsepage.find_all('td',attrs={"data-stat":'minutes_per_game'})
 for minsp in findinfo:
     addminutespgame = minsp.get_text()
