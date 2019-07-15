@@ -6,9 +6,6 @@ parse_page = bsoup(page.content, 'html.parser')
 position_list = []
 age_list = []
 
-# Capture season with: <h1 itemprop="name"><span>2018-2019 Northampton Town Stats</span></h1>
-
-
 # Need to somehow get the 'sotlist' variable to change when the data_point changes
 # Add +1 to grab start to shift the list
 to_parse = ["position","age"]
