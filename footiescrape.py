@@ -176,12 +176,15 @@ for sot in findinfo:
 print("Dataset created - adding to Excel sheet")
 print("")
 
-# Data writing into excel file - insert lists to designated columns A1 onward
+# Data writing into excel file
+# Create headers based on col_headers
 startrow = 0
 startcol = 0
 for header in col_headers:
     worksheet.write(startrow, startcol, header)
     startcol += 1
+    
+# Fill data points into set
 startrow = 1
 startcol = 0
 for lst in all_lists:
