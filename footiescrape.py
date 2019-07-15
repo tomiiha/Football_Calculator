@@ -7,7 +7,6 @@ import xlsxwriter as xsl
 
 # Which season (YYYY format) to gen and, which URL to parse
 # Season used for file name - nothing fancy
-# Capture season with: <h1 itemprop="name"><span>2018-2019 Northampton Town Stats</span></h1>
 season = 1819
 page_to_parse = 'https://fbref.com/en/squads/986a26c1/Northampton-Town'
 
