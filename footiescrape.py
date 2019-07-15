@@ -22,7 +22,7 @@ print("")
 # Capture website
 page = reqs.get(pagetoparse)
 statuscode = page.status_code
-status = str(status)
+statuscode = str(statuscode)
 statcomp = "2"
 parsepage = bsoup(page.content, 'html.parser')
 
