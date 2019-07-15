@@ -22,11 +22,17 @@ print("")
 # Capture website
 page = reqs.get(pagetoparse)
 status = page.status_code
+status = str(status)
+statcomp = "2"
 parsepage = bsoup(page.content, 'html.parser')
 
 # Status notice
-print("Parsing: " + str(pagetoparse))
-print("")
+if status[0] == statcomp:
+    print("Parsing: " + str(pagetoparse) + " completed")
+    print("")
+else:
+    print("There was an issue with parsing")
+    print("")
 
 # Lists
 playerlist = []
