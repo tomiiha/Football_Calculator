@@ -194,7 +194,6 @@ for lst in all_lists:
     startrow = 1
     startcol = startcol + 1
 
-
 # Finish Excel creation
 workbook.close()
 
