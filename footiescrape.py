@@ -165,7 +165,7 @@ for red in findinfo:
     if addred != 'coverage note':
         redlist.append(addred)
         
-# Create minutespgamelist - non-unique
+# Create sotlist - non-unique
 findinfo = parsepage.find_all('td',attrs={"data-stat":'shots_on_target'})
 for sot in findinfo:
     addsot = sot.get_text()
