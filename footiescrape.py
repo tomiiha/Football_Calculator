@@ -220,7 +220,48 @@ startcol = 7
 for var in minutespgamelist:
     worksheet.write(startrow, startcol, var)
     startrow += 1
+startrow = 1
+startcol = 8
+for var in goalslist:
+    worksheet.write(startrow, startcol, var)
+    startrow += 1
+startrow = 1
+startcol = 9
+for var in assistslist:
+    worksheet.write(startrow, startcol, var)
+    startrow += 1    
+startrow = 1
+startcol = 10
+for var in pensmadelist:
+    worksheet.write(startrow, startcol, var)
+    startrow += 1    
+startrow = 1
+startcol = 11
+for var in pensattlist:
+    worksheet.write(startrow, startcol, var)
+    startrow += 1
+startrow = 1
+startcol = 12
+for var in foulslist:
+    worksheet.write(startrow, startcol, var)
+    startrow += 1    
+startrow = 1
+startcol = 13
+for var in yellowlist:
+    worksheet.write(startrow, startcol, var)
+    startrow += 1    
+startrow = 1
+startcol = 14
+for var in redlist:
+    worksheet.write(startrow, startcol, var)
+    startrow += 1
+startrow = 1
+startcol = 15
+for var in sotlist:
+    worksheet.write(startrow, startcol, var)
+    startrow += 1
     
+
 # Finish Excel creation
 workbook.close()
 
