@@ -191,7 +191,7 @@ for lst in all_lists:
     for var in lst:
         worksheet.write(startrow, startcol, var)
         startrow += 1
-    startrow = 0
+    startrow = 1
     startcol = startcol + 1
 
 
