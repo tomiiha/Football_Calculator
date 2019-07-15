@@ -15,6 +15,15 @@ status_code = page.status_code
 status_code = str(status_code)
 parse_page = bsoup(page.content, 'html.parser')
 
+# Status notice - stat_comp should start with 2 for parsing to have been completed
+stat_comp = "2"
+if status_code[0] == stat_comp:
+    print("Parsing: " + str(page_to_parse) + " completed")
+    print("")
+else:
+    print("There was an issue with parsing")
+    print("")
+
 # Capture season number
 season_numb = parse_page.find('h1')
 season_numb = season_numb.get_text()
@@ -28,15 +37,6 @@ worksheet = workbook.add_worksheet()
 # Status notice
 print("Workbook " + str(workbook_name) + " created")
 print("")
-
-# Status notice - stat_comp should start with 2 for parsing to have been completed
-stat_comp = "2"
-if status_code[0] == stat_comp:
-    print("Parsing: " + str(page_to_parse) + " completed")
-    print("")
-else:
-    print("There was an issue with parsing")
-    print("")
 
 # Lists
 player_list = []
