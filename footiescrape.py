@@ -23,10 +23,10 @@ print("")
 page = reqs.get(page_to_parse)
 status_code = page.status_code
 status_code = str(status_code)
-stat_comp = "2"
 parse_page = bsoup(page.content, 'html.parser')
 
-# Status notice
+# Status notice - stat_comp should start with 2 for parsing to have been completed
+stat_comp = "2"
 if status_code[0] == stat_comp:
     print("Parsing: " + str(page_to_parse) + " completed")
     print("")
