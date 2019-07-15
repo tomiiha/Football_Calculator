@@ -43,6 +43,14 @@ gamestartslist = []
 gamesubslist = []
 minuteslist = []
 minutespgamelist = []
+goalslist = []
+assistslist = []
+pensmadelist = []
+pensattlist = []
+foulslist = []
+yellowlist = []
+redlist = []
+sotlist = []
 toparse = ["player","position","age","games","game_starts","game_subs","minutes","minutes_per_game"]
 
 # Status notice
@@ -104,6 +112,62 @@ for minsp in findinfo:
     addminutespgame = minsp.get_text()
     if addminutespgame != 'coverage note':
         minutespgamelist.append(addminutespgame)
+        
+# Create goalslist - non-unique
+findinfo = parsepage.find_all('td',attrs={"data-stat":'assists'})
+for goals in findinfo:
+    addgoals = goals.get_text()
+    if addgoals != 'coverage note':
+        goalslist.append(addgoals)
+        
+# Create assistslist - non-unique
+findinfo = parsepage.find_all('td',attrs={"data-stat":'assists'})
+for assists in findinfo:
+    addassists =  assists.get_text()
+    if addassists != 'coverage note':
+        assistslist.append(addassists)
+        
+# Create pensmadelist - non-unique
+findinfo = parsepage.find_all('td',attrs={"data-stat":'pens_made'})
+for pens in findinfo:
+    addpensmade = pens.get_text()
+    if addpensmade != 'coverage note':
+        pensmadelist.append(addpensmade)
+        
+# Create pensattlist - non-unique
+findinfo = parsepage.find_all('td',attrs={"data-stat":'pens_att'})
+for pensa in findinfo:
+    addpensatt = pensa.get_text()
+    if addpensatt != 'coverage note':
+        pensattlist.append(addpensatt)
+        
+# Create foulslist - non-unique
+findinfo = parsepage.find_all('td',attrs={"data-stat":'fouls'})
+for fouls in findinfo:
+    addfouls = fouls.get_text()
+    if addfouls != 'coverage note':
+        foulslist.append(addfouls)
+        
+# Create yellowlist - non-unique
+findinfo = parsepage.find_all('td',attrs={"data-stat":'cards_yellow'})
+for yellow in findinfo:
+    addyellow = yellow.get_text()
+    if addyellow != 'coverage note':
+        yellowlist.append(addyellow)
+        
+# Create redlist - non-unique
+findinfo = parsepage.find_all('td',attrs={"data-stat":'cards_red'})
+for red in findinfo:
+    addred = red.get_text()
+    if addred != 'coverage note':
+        redlist.append(addred)
+        
+# Create minutespgamelist - non-unique
+findinfo = parsepage.find_all('td',attrs={"data-stat":'shots_on_target'})
+for sot in findinfo:
+    addsot = sot.get_text()
+    if addsot != 'coverage note':
+        sotlist.append(addsot)
             
 # Status notice
 print("Dataset created - adding to Excel sheet")
