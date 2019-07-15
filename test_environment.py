@@ -5,4 +5,4 @@ for data_point in to_parse:
 	for datum in findinfo:
 		add_datum = datum.get_text()
 		if add_datum != 'coverage note':
-			sotlist.append(addsot)
+			sotlist.append(add_datum)
