@@ -3,8 +3,12 @@ import requests as reqs
 page_to_parse = 'https://fbref.com/en/squads/986a26c1/Northampton-Town'
 page = reqs.get(page_to_parse)
 parse_page = bsoup(page.content, 'html.parser')
+position_list = []
+age_list = []
 
-to_parse = ["player","position","age"]
+# Need to somehow get the 'sotlist' variable to change when the data_point changes
+# Add +1 to grab start to shift the list
+to_parse = ["position","age"]
 grab_start = 0
 parse_start = to_parse[grab_start]
 for data_point in to_parse:
@@ -12,4 +16,7 @@ for data_point in to_parse:
 	for datum in findinfo:
 		add_datum = datum.get_text()
 		if add_datum != 'coverage note':
-			sotlist.append(add_datum)
+			position_list.append(add_datum)
+			
+print(position_list)
+print(age_list)
