@@ -54,7 +54,7 @@ sotlist = []
 
 # Excel lists
 all_lists = [playerlist,positionlist,agelist,gameslist,gamestartslist,gamesubslist,minuteslist,minutespgamelist, goalslist,assistslist,pensmadelist,pensattlist,foulslist,yellowlist,redlist,sotlist]
-col_headers = ["player","position","age","games","game_starts","game_subs","minutes","minutes_per_game","assists","pens_made","pens_att","fouls","cards_yellow","cards_red","shots_on_target"]
+to_parse = ["player","position","age","games","game_starts","game_subs","minutes","minutes_per_game","assists","pens_made","pens_att","fouls","cards_yellow","cards_red","shots_on_target"]
 
 # Status notice
 print("Creating dataset")
@@ -180,7 +180,7 @@ print("")
 # Create headers based on col_headers
 startrow = 0
 startcol = 0
-for header in col_headers:
+for header in to_parse:
     worksheet.write(startrow, startcol, header)
     startcol += 1
     
