@@ -181,7 +181,7 @@ print("Dataset created - adding to Excel sheet")
 print("")
 
 # Data writing into excel file
-# Create headers based on col_headers
+# Create headers based on to_parse
 startrow = 0
 startcol = 0
 for header in to_parse:
