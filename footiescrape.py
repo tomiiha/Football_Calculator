@@ -8,27 +8,27 @@ import xlsxwriter as xsl
 # Which season (YYYY format) to gen and, which URL to parse
 # Season used for file name - nothing fancy
 season = 1819
-pagetoparse = 'https://fbref.com/en/squads/986a26c1/Northampton-Town'
+page_to_parse = 'https://fbref.com/en/squads/986a26c1/Northampton-Town'
 
 # Load data file to use
-workbookname = 'Ndata' + str(season) + '.xlsx'
-workbook = xsl.Workbook(workbookname)
+workbook_name = 'Ndata' + str(season) + '.xlsx'
+workbook = xsl.Workbook(workbook_name)
 worksheet = workbook.add_worksheet()
 
 # Status notice
-print("Workbook " + str(workbookname) + " created")
+print("Workbook " + str(workbook_name) + " created")
 print("")
 
 # Capture website
-page = reqs.get(pagetoparse)
-statuscode = page.status_code
-statuscode = str(statuscode)
-statcomp = "2"
+page = reqs.get(page_to_parse)
+status_code = page.status_code
+status_code = str(status_code)
+stat_comp = "2"
 parsepage = bsoup(page.content, 'html.parser')
 
 # Status notice
-if statuscode[0] == statcomp:
-    print("Parsing: " + str(pagetoparse) + " completed")
+if status_code[0] == stat_comp:
+    print("Parsing: " + str(page_to_parse) + " completed")
     print("")
 else:
     print("There was an issue with parsing")
@@ -54,7 +54,7 @@ sotlist = []
 
 # Excel lists
 all_lists = [playerlist,positionlist,agelist,gameslist,gamestartslist,gamesubslist,minuteslist,minutespgamelist, goalslist,assistslist,pensmadelist,pensattlist,foulslist,yellowlist,redlist,sotlist]
-toparse = ["player","position","age","games","game_starts","game_subs","minutes","minutes_per_game"]
+col_headers = ["player","position","age","games","game_starts","game_subs","minutes","minutes_per_game","assists","pens_made","pens_att","fouls","cards_yellow","cards_red","shots_on_target"]
 
 # Status notice
 print("Creating dataset")
@@ -179,7 +179,7 @@ print("")
 # Data writing into excel file - insert lists to designated columns A1 onward
 startrow = 0
 startcol = 0
-for header in toparse:
+for header in col_headers:
     worksheet.write(startrow, startcol, header)
     startcol += 1
 startrow = 1
