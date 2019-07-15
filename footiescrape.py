@@ -64,7 +64,7 @@ print("")
 findplayers = parse_page.find_all('th',attrs={"data-stat":"player"})
 for player in findplayers:
     addplayer = player.find_next('a').get_text()
-    if addplayer not in playerlist and addplayer != 'coverage note':
+    if addplayer not in player_list and addplayer != 'coverage note':
         player_list.append(addplayer)
             
 # Create positionlist - non-unique
