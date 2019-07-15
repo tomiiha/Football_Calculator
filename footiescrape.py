@@ -5,11 +5,8 @@ from bs4 import BeautifulSoup as bsoup
 import requests as reqs
 import xlsxwriter as xsl
 
-# Which season (YYYY format) to gen and, which URL to parse
-# Season used for file name - nothing fancy
-page_to_parse = 'https://fbref.com/en/squads/986a26c1/Northampton-Town'
-
 # Capture website
+page_to_parse = 'https://fbref.com/en/squads/986a26c1/Northampton-Town'
 page = reqs.get(page_to_parse)
 status_code = page.status_code
 status_code = str(status_code)
