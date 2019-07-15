@@ -21,13 +21,13 @@ print("")
 
 # Capture website
 page = reqs.get(pagetoparse)
-status = page.status_code
+statuscode = page.status_code
 status = str(status)
 statcomp = "2"
 parsepage = bsoup(page.content, 'html.parser')
 
 # Status notice
-if status[0] == statcomp:
+if statuscode[0] == statcomp:
     print("Parsing: " + str(pagetoparse) + " completed")
     print("")
 else:
