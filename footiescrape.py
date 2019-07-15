@@ -35,25 +35,25 @@ else:
     print("")
 
 # Lists
-playerlist = []
-positionlist = []
-agelist = []
-gameslist = []
-gamestartslist = []
-gamesubslist = []
-minuteslist = []
-minutespgamelist = []
-goalslist = []
-assistslist = []
-pensmadelist = []
-pensattlist = []
-foulslist = []
-yellowlist = []
-redlist = []
-sotlist = []
+player_list = []
+position_list = []
+age_list = []
+games_list = []
+game_starts_list = []
+game_subs_list = []
+minutes_list = []
+minutes_per_game_list = []
+goals_list = []
+assists_list = []
+pens_made_list = []
+pens_att_list = []
+fouls_list = []
+yellow_list = []
+red_list = []
+sot_list = []
 
 # Excel lists
-all_lists = [playerlist,positionlist,agelist,gameslist,gamestartslist,gamesubslist,minuteslist,minutespgamelist, goalslist,assistslist,pensmadelist,pensattlist,foulslist,yellowlist,redlist,sotlist]
+all_lists = [player_list,position_list,age_list,games_list,game_starts_list,game_subs_list,minutes_list,minutes_per_game_list, goals_list,assists_list,pens_made_list,pens_att_list,fouls_list,yellow_list,red_list,sot_list]
 to_parse = ["player","position","age","games","game_starts","game_subs","minutes","minutes_per_game","assists","pens_made","pens_att","fouls","cards_yellow","cards_red","shots_on_target"]
 
 # Status notice
@@ -65,112 +65,112 @@ findplayers = parse_page.find_all('th',attrs={"data-stat":"player"})
 for player in findplayers:
     addplayer = player.find_next('a').get_text()
     if addplayer not in playerlist and addplayer != 'coverage note':
-        playerlist.append(addplayer)
+        player_list.append(addplayer)
             
 # Create positionlist - non-unique
 findinfo = parse_page.find_all('td',attrs={"data-stat":'position'})
 for position in findinfo:
     addposition = position.get_text()
     if addposition != 'coverage note':
-        positionlist.append(addposition)
+        position_list.append(addposition)
 
 # Create agelist - non-unique
 findinfo = parse_page.find_all('td',attrs={"data-stat":'age'})
 for age in findinfo:
     addage = age.get_text()
     if addage != 'coverage note':
-        agelist.append(addage)
+        age_list.append(addage)
 
 # Create gameslist - non-unique
 findinfo = parse_page.find_all('td',attrs={"data-stat":'games'})
 for games in findinfo:
     addgames = games.get_text()
     if addgames != 'coverage note':
-        gameslist.append(addgames)
+        games_list.append(addgames)
 
 # Create gamestartlist - non-unique
 findinfo = parse_page.find_all('td',attrs={"data-stat":'game_starts'})
 for gamestart in findinfo:
     addstart = gamestart.get_text()
     if addstart != 'coverage note':
-        gamestartslist.append(addstart)
+        game_starts_list.append(addstart)
 
 # Create gamesubslist - non-unique
 findinfo = parse_page.find_all('td',attrs={"data-stat":'game_subs'})
 for subs in findinfo:
     addgamesubs = subs.get_text()
     if addgamesubs != 'coverage note':
-        gamesubslist.append(addgamesubs)
+        game_subs_list.append(addgamesubs)
 
 # Create minuteslist - non-unique
 findinfo = parse_page.find_all('td',attrs={"data-stat":'minutes'})
 for mins in findinfo:
     addminutes = mins.get_text()
     if addminutes != 'coverage note':
-        minuteslist.append(addminutes)
+        minutes_list.append(addminutes)
 
 # Create minutespgamelist - non-unique
 findinfo = parse_page.find_all('td',attrs={"data-stat":'minutes_per_game'})
 for minsp in findinfo:
     addminutespgame = minsp.get_text()
     if addminutespgame != 'coverage note':
-        minutespgamelist.append(addminutespgame)
+        minutes_per_game_list.append(addminutespgame)
         
 # Create goalslist - non-unique
 findinfo = parse_page.find_all('td',attrs={"data-stat":'assists'})
 for goals in findinfo:
     addgoals = goals.get_text()
     if addgoals != 'coverage note':
-        goalslist.append(addgoals)
+        goals_list.append(addgoals)
         
 # Create assistslist - non-unique
 findinfo = parse_page.find_all('td',attrs={"data-stat":'assists'})
 for assists in findinfo:
     addassists =  assists.get_text()
     if addassists != 'coverage note':
-        assistslist.append(addassists)
+        assists_list.append(addassists)
         
 # Create pensmadelist - non-unique
 findinfo = parse_page.find_all('td',attrs={"data-stat":'pens_made'})
 for pens in findinfo:
     addpensmade = pens.get_text()
     if addpensmade != 'coverage note':
-        pensmadelist.append(addpensmade)
+        pens_made_list.append(addpensmade)
         
 # Create pensattlist - non-unique
 findinfo = parse_page.find_all('td',attrs={"data-stat":'pens_att'})
 for pensa in findinfo:
     addpensatt = pensa.get_text()
     if addpensatt != 'coverage note':
-        pensattlist.append(addpensatt)
+        pens_att_list.append(addpensatt)
         
 # Create foulslist - non-unique
 findinfo = parse_page.find_all('td',attrs={"data-stat":'fouls'})
 for fouls in findinfo:
     addfouls = fouls.get_text()
     if addfouls != 'coverage note':
-        foulslist.append(addfouls)
+        fouls_list.append(addfouls)
         
 # Create yellowlist - non-unique
 findinfo = parse_page.find_all('td',attrs={"data-stat":'cards_yellow'})
 for yellow in findinfo:
     addyellow = yellow.get_text()
     if addyellow != 'coverage note':
-        yellowlist.append(addyellow)
+        yellow_list.append(addyellow)
         
 # Create redlist - non-unique
 findinfo = parse_page.find_all('td',attrs={"data-stat":'cards_red'})
 for red in findinfo:
     addred = red.get_text()
     if addred != 'coverage note':
-        redlist.append(addred)
+        red_list.append(addred)
         
 # Create sotlist - non-unique
 findinfo = parse_page.find_all('td',attrs={"data-stat":'shots_on_target'})
 for sot in findinfo:
     addsot = sot.get_text()
     if addsot != 'coverage note':
-        sotlist.append(addsot)
+        sot_list.append(addsot)
             
 # Status notice
 print("Dataset created - adding to Excel sheet")
