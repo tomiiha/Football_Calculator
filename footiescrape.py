@@ -52,9 +52,9 @@ yellowlist = []
 redlist = []
 sotlist = []
 
-# If possible, simplify parse, and workbook creation with these
-#all_lists = [playerlist,positionlist,agelist,gameslist,gamestartslist,gamesubslist,minuteslist,minutespgamelist, goalslist,assistslist,pensmadelist,pensattlist,foulslist,yellowlist,redlist,sotlist]
-#toparse = ["player","position","age","games","game_starts","game_subs","minutes","minutes_per_game"]
+# Excel lists
+all_lists = [playerlist,positionlist,agelist,gameslist,gamestartslist,gamesubslist,minuteslist,minutespgamelist, goalslist,assistslist,pensmadelist,pensattlist,foulslist,yellowlist,redlist,sotlist]
+toparse = ["player","position","age","games","game_starts","game_subs","minutes","minutes_per_game"]
 
 # Status notice
 print("Creating dataset")
@@ -184,85 +184,13 @@ for header in toparse:
     startcol += 1
 startrow = 1
 startcol = 0
-for player in playerlist:
-    worksheet.write(startrow, startcol, player)
-    startrow += 1
-startrow = 1
-startcol = 1
-for var in positionlist:
-    worksheet.write(startrow, startcol, var)
-    startrow += 1
-startrow = 1
-startcol = 2
-for var in agelist:
-    worksheet.write(startrow, startcol, var)
-    startrow += 1
-startrow = 1
-startcol = 3
-for var in gameslist:
-    worksheet.write(startrow, startcol, var)
-    startrow += 1
-startrow = 1
-startcol = 4
-for var in gamestartslist:
-    worksheet.write(startrow, startcol, var)
-    startrow += 1
-startrow = 1
-startcol = 5
-for var in gamesubslist:
-    worksheet.write(startrow, startcol, var)
-    startrow += 1
-startrow = 1
-startcol = 6
-for var in minuteslist:
-    worksheet.write(startrow, startcol, var)
-    startrow += 1
-startrow = 1
-startcol = 7
-for var in minutespgamelist:
-    worksheet.write(startrow, startcol, var)
-    startrow += 1
-startrow = 1
-startcol = 8
-for var in goalslist:
-    worksheet.write(startrow, startcol, var)
-    startrow += 1
-startrow = 1
-startcol = 9
-for var in assistslist:
-    worksheet.write(startrow, startcol, var)
-    startrow += 1    
-startrow = 1
-startcol = 10
-for var in pensmadelist:
-    worksheet.write(startrow, startcol, var)
-    startrow += 1    
-startrow = 1
-startcol = 11
-for var in pensattlist:
-    worksheet.write(startrow, startcol, var)
-    startrow += 1
-startrow = 1
-startcol = 12
-for var in foulslist:
-    worksheet.write(startrow, startcol, var)
-    startrow += 1    
-startrow = 1
-startcol = 13
-for var in yellowlist:
-    worksheet.write(startrow, startcol, var)
-    startrow += 1    
-startrow = 1
-startcol = 14
-for var in redlist:
-    worksheet.write(startrow, startcol, var)
-    startrow += 1
-startrow = 1
-startcol = 15
-for var in sotlist:
-    worksheet.write(startrow, startcol, var)
-    startrow += 1
-    
+for lst in all_lists:
+    for var in lst:
+        worksheet.write(startrow, startcol, var)
+        startrow += 1
+    startrow = 0
+    startcol = startcol + 1
+
 
 # Finish Excel creation
 workbook.close()
