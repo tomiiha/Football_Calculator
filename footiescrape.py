@@ -51,6 +51,7 @@ foulslist = []
 yellowlist = []
 redlist = []
 sotlist = []
+all_lists = [playerlist,positionlist,agelist,gameslist,gamestartslist,gamesubslist,minuteslist,minutespgamelist, goalslist,assistslist,pensmadelist,pensattlist,foulslist,yellowlist,redlist,sotlist]
 toparse = ["player","position","age","games","game_starts","game_subs","minutes","minutes_per_game"]
 
 # Status notice
