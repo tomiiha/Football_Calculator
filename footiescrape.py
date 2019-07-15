@@ -7,23 +7,27 @@ import xlsxwriter as xsl
 
 # Which season (YYYY format) to gen and, which URL to parse
 # Season used for file name - nothing fancy
-season = 1819
 page_to_parse = 'https://fbref.com/en/squads/986a26c1/Northampton-Town'
-
-# Load data file to use
-workbook_name = 'Ndata' + str(season) + '.xlsx'
-workbook = xsl.Workbook(workbook_name)
-worksheet = workbook.add_worksheet()
-
-# Status notice
-print("Workbook " + str(workbook_name) + " created")
-print("")
 
 # Capture website
 page = reqs.get(page_to_parse)
 status_code = page.status_code
 status_code = str(status_code)
 parse_page = bsoup(page.content, 'html.parser')
+
+# Capture season number
+season_numb = parse_page.find('h1')
+season_numb = season_numb.get_text()
+season_numb = season_numb[0:10]
+
+# Load data file to use
+workbook_name = 'Ndata' + str(season_numb) + '.xlsx'
+workbook = xsl.Workbook(workbook_name)
+worksheet = workbook.add_worksheet()
+
+# Status notice
+print("Workbook " + str(workbook_name) + " created")
+print("")
 
 # Status notice - stat_comp should start with 2 for parsing to have been completed
 stat_comp = "2"
