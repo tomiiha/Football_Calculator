@@ -11,14 +11,15 @@ all_list = [position_list,age_list]
 # Add +1 to grab start to shift the list
 to_parse = ["position","age"]
 grab_start = 0
+grab_list = 0
 parse_start = to_parse[grab_start]
 for data_point in to_parse:
 	findinfo = parse_page.find_all('td',attrs={"data-stat":data_point})
 	for datum in findinfo:
 		add_datum = datum.get_text()
 		if add_datum != 'coverage note':
-			all_list[0].append(add_datum)
-	grab_start = grab_start + 1
+			all_list[grab_list].append(add_datum)
+	grab_list = grab_list + 1
 			
 # Exclude td class="right ", td class="right iz", and td class="right group_start"
 findinfo = parse_page.find_all('td',attrs={"data-stat":'position'})
