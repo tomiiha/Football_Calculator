@@ -5,11 +5,12 @@ page = reqs.get(page_to_parse)
 parse_page = bsoup(page.content, 'html.parser')
 position_list = []
 age_list = []
-all_list = [position_list,age_list]
+
 
 # Need to somehow get the 'sotlist' variable to change when the data_point changes
 # Add +1 to grab start to shift the list
 to_parse = ["position","age"]
+all_list = [position_list,age_list]
 grab_start = 0
 grab_list = 0
 parse_start = to_parse[grab_start]
