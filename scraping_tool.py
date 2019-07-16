@@ -18,7 +18,7 @@ parse_page = bsoup(page.content, 'html.parser')
 # Capture season number
 season_numb = parse_page.find('h1')
 season_numb = season_numb.get_text()
-season_numb = season_numb[0:10]
+season_numb = season_numb[1:10]
 
 # Load data file to use
 workbook_name = 'Ndata' + str(season_numb) + '.xlsx'
