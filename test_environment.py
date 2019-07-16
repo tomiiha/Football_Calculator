@@ -5,6 +5,7 @@ page = reqs.get(page_to_parse)
 parse_page = bsoup(page.content, 'html.parser')
 position_list = []
 age_list = []
+all_list = [position_list,age_list]
 
 # Need to somehow get the 'sotlist' variable to change when the data_point changes
 # Add +1 to grab start to shift the list
@@ -16,7 +17,8 @@ for data_point in to_parse:
 	for datum in findinfo:
 		add_datum = datum.get_text()
 		if add_datum != 'coverage note':
-			position_list.append(add_datum)
+			all_list[0].append(add_datum)
+	grab_start = grab_start + 1
 			
 # Exclude td class="right ", td class="right iz", and td class="right group_start"
 findinfo = parse_page.find_all('td',attrs={"data-stat":'position'})
