@@ -21,7 +21,7 @@ season_numb = season_numb.get_text()
 season_numb = season_numb[1:10]
 
 # Load data file to use
-workbook_name = 'Ndata' + str(season_numb) + '.xlsx'
+workbook_name = 'NData' + str(season_numb) + '.xlsx'
 workbook = xsl.Workbook(workbook_name)
 worksheet = workbook.add_worksheet()
 
@@ -71,10 +71,8 @@ for player in findplayers:
     if addplayer not in player_list and addplayer != 'coverage note':
         player_list.append(addplayer)
 
-# Grab website data - per all_list and to_parse
-grab_start = 0
+# Grab website data
 grab_list = 0
-parse_start = to_parse[grab_start]
 for data_point in to_parse:
 	findinfo = parse_page.find_all('td',attrs={"data-stat":data_point})
 	for datum in findinfo:
@@ -98,7 +96,7 @@ for header in to_parse:
 # Fill data points into set
 startrow = 1
 startcol = 0
-for lst in all_lists:
+for lst in all_list:
     for var in lst:
         worksheet.write(startrow, startcol, var)
         startrow += 1
