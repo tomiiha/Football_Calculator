@@ -18,5 +18,12 @@ for data_point in to_parse:
 		if add_datum != 'coverage note':
 			position_list.append(add_datum)
 			
+# Exclude td class="right ", td class="right iz", and td class="right group_start"
+findinfo = parse_page.find_all('td',attrs={"data-stat":'position'})
+for position in findinfo:
+    addposition = position.get_text()
+    if addposition != 'coverage note':
+        position_list.append(addposition)
+			
 print(position_list)
 print(age_list)
