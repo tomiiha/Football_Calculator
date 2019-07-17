@@ -57,7 +57,7 @@ sot_list = []
 
 # Excel lists
 all_list = [player_list,position_list,age_list,games_list,game_starts_list,game_subs_list,minutes_list,minutes_per_game_list, goals_list,assists_list,pens_made_list,pens_att_list,fouls_list,yellow_list,red_list,sot_list]
-to_parse = ["player","position","age","games","game_starts","game_subs","minutes","minutes_per_game","goals","assists","pens_made","pens_att","fouls","cards_yellow","cards_red","shots_on_target"]
+to_parse = ["player","position","age","games","games_starts","games_subs","minutes","minutes_per_game","goals","assists","pens_made","pens_att","fouls","cards_yellow","cards_red","shots_on_target"]
 
 # Status notice
 print("Creating dataset")
