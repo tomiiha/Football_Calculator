@@ -5,7 +5,6 @@ from bs4 import BeautifulSoup as bsoup
 import requests as reqs
 import xlsxwriter as xsl
 
-# Which season (YYYY format) to gen and, which URL to parse
 # Season used for file name - nothing fancy
 page_to_parse = 'https://fbref.com/en/squads/986a26c1/Northampton-Town'
 
@@ -93,11 +92,12 @@ for header in to_parse:
     worksheet.write(startrow, startcol, header)
     startcol += 1
 
-# Fill data points into set
+# Fill data points into set per player count (to remove totals)
+player_count = len(player_list)
 startrow = 1
 startcol = 0
 for lst in all_list:
-    for var in lst:
+    for var in lst[:int(player_count)]:
         worksheet.write(startrow, startcol, var)
         startrow += 1
     startrow = 1
