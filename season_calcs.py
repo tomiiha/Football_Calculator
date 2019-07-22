@@ -4,6 +4,9 @@ import pandas as pd
 season = "2018-2019"
 season_list = ["2017-2018","2018-2019"]
 
+# Exclusion - games column
+excl_value = 10
+
 # Lists
 header_list = []
 
@@ -19,6 +22,6 @@ for seas in season_list:
         
 # Run calcs on individual headers
     for header in header_list:
-        data_mean = excel_sheet[header][excel_sheet.games >= 10].mean()
+        data_mean = excel_sheet[header][excel_sheet.games >= excl_value].mean()
         data_mean = round(data_mean,2)
         print(data_mean)
