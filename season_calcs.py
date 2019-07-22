@@ -1,7 +1,6 @@
 import pandas as pd
 
 # What seasons to include (list off of files)
-season = "2018-2019"
 season_list = ["2017-2018","2018-2019"]
 
 # Exclusion - games column
