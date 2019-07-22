@@ -11,5 +11,7 @@ sports_data = [pd.read_excel(r'Data\NData' + str(season) + '.xlsx') for season i
 for i, season in enumerate(season_list):
     sports_data[i]['season'] = season
 sports_data = pd.concat(sports_data)
+sports_data = sports_data.fillna(value = 0)
 sports_data = sports_data.groupby('season').mean().T
+
 print(sports_data)
