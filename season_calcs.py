@@ -2,6 +2,7 @@ import pandas as pd
 
 # What seasons to include (list off of files)
 season_list = ["2017-2018","2018-2019"]
+excl_value = 10
 
 # Lists
 header_list = []
@@ -12,6 +13,6 @@ for i, season in enumerate(season_list):
     sports_data[i]['season'] = season
 sports_data = pd.concat(sports_data)
 sports_data = sports_data.fillna(value = 0)
+sports_data = sports_data[sports_data.games >= excl_value]
 sports_data = sports_data.groupby('season').mean().T
-
 print(sports_data)
