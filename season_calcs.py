@@ -15,4 +15,5 @@ sports_data = pd.concat(sports_data)
 sports_data = sports_data.fillna(value = 0)
 sports_data = sports_data[sports_data.games >= excl_value]
 sports_data = sports_data.groupby('season').mean().T
+sports_data = round(sports_data,3)
 print(sports_data)
