@@ -1,7 +1,3 @@
-# footiescrape
-Scrape for Football data
-Add data to NData files, labeled with yy/yy (1819 eg.) for splitting data between seasons
+# Football Scraping and Calculation tool
 
-use test_environment for testing possible prod additions
-
-Calcs will be done on the seasonal files later
+scraping_tool.py has been created to capture website data (fbref.com), that can be then fed into the season_calcs.py engine. This will run some simple metrics to track team performance.
