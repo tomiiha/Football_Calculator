@@ -3,7 +3,7 @@ import glob, os
 
 # What seasons to include (list off of files)
 season_list = []
-os.chdir(r"C:\Users\tihalainen\Desktop\Data Stuff\Data")
+os.chdir(r"Data")
 for file in glob.glob("*.xlsx"):
     file = file[5:14]
     season_list.append(str(file))
