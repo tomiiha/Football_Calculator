@@ -22,4 +22,4 @@ sports_data = sports_data[sports_data.games >= excl_value].groupby('season').mea
 sports_data = round(sports_data,3)
 
 # Create Excel sheet with dataframe
-sports_data.to_excel(r'Data\Summary NorthamtopTown.xlsx')
+sports_data.to_excel(r'Summary\Summary NorthamptonTown.xlsx')
