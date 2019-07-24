@@ -20,7 +20,7 @@ season_numb = season_numb.get_text()
 season_numb = season_numb[1:10]
 
 # Load data file to use
-workbook_name = r'Data\NData' + str(season_numb) + '.xlsx'
+workbook_name = r'Data\Northampton Town Season ' + str(season_numb) + '.xlsx'
 workbook = xsl.Workbook(workbook_name)
 worksheet = workbook.add_worksheet()
 
