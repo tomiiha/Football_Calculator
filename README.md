@@ -1,5 +1,7 @@
 # Football Scraping and Calculation tool
 
+Personal project to get a deeper understanding of sports analytics, to leverage for story telling later on for lower-tier leagues. Consists currently of two programs: scraping_tool.py and season_calcs.py.
+
 scraping_tool.py has been created to capture website data (fbref.com), that can be then fed into the season_calcs.py engine. This will run some simple metrics to track team performance. Currently in a very simplistic form, however expanding slowly to make scraping a bit easier, and then build the calculations engine to capture some narrative based off of these data.
 
 # Currently building for the data parser:
@@ -11,10 +13,10 @@ scraping_tool.py has been created to capture website data (fbref.com), that can 
 
 # Currently building for the calculation engine:
 
-- Calculate player performance throughout seasons
-- Replicate FiveThirtyEight model for team success predictions
-- Apply some basic models (TBD) for team level analytics
+- Calculate player performance throughout seasons.
+- Replicate FiveThirtyEight model for team success predictions.
+- Apply some basic models (TBD) for team level analytics.
 
-# Legend and Notes
+# Legend and Notes:
 
 Calculation notation: Goals (G), Assists (A), Penalties (PK), Shots on Target (SOT), Fouls (F), Cards (C), Per 90 Minutes (/90).
