@@ -19,4 +19,5 @@ scraping_tool.py has been created to capture website data (fbref.com), that can 
 
 # Legend and Notes:
 
-Calculation notation: Goals (G), Assists (A), Penalties (PK), Shots on Target (SOT), Fouls (F), Cards (C), Per 90 Minutes (/90).
+- Calculation notation: Goals (G), Assists (A), Penalties (PK), Shots on Target (SOT), Fouls (F), Cards (C), Per 90 Minutes (/90), Total Minutes Played (TM).
+- Math for over 90s is simple, for example G+A-PK/90: (G+A)/(TM/90). The float result effectively will define a simple performance metric to start with.
