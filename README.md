@@ -9,7 +9,7 @@ scraping_tool.py has been created to capture website data (fbref.com), that can 
 - Use Data URLs.xlsx to feed the parser instead of single, manual URLs, for easy team one-off parsing. Current scope simply 2002 onward.
 - Use League Two/League One Teams per Season files to feed team listings for parser, to get all teams at once. All needed is the URL team codes, and the rest can be automated.
 
-- Run simply calculations for team performative stats (G/90, A/90, G-PK/90, G+A-PK/90, SOT/90, F/90, C/90) off of parser. Should just be captured rather easily off of the acquired data.
+- Run simply calculations for team performative stats (G/90, A/90, G+A/90, G-PK/90, G+A-PK/90, SOT/90, F/90, C/90) off of parser. Should just be captured rather easily off of the acquired data.
 
 # Currently building for the calculation engine:
 
