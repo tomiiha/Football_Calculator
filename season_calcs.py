@@ -1,3 +1,4 @@
+# Calculation legend: # Goals (G), Assists (A), Penalties (PK), Shots on Target (SOT), Fouls (F), Cards (C)
 import pandas as pd
 import glob, os
 
