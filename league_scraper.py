@@ -6,7 +6,7 @@ import requests as reqs
 import xlsxwriter as xsl
 
 # League page
-page_to_parse = 'https://fbref.com/en/comps/16/League-Two-Stats'
+page_to_parse = 'https://fbref.com/en/comps/16/1629/2017-2018-League-Two-Stats'
 
 # Capture website
 page = reqs.get(page_to_parse)
@@ -17,6 +17,9 @@ parse_page = bsoup(page.content, 'html.parser')
 # Capture season number
 season_name = parse_page.find('h1')
 season_name = season_name.get_text()
+beg_name = season_name.find('2')
+end_name = season_name.find('ts') + 2
+season_name = season_name[beg_name:end_name]
 
 # Load data file to use
 workbook_name = str(season_name) + '.xlsx'
@@ -33,7 +36,7 @@ if status_code[0] == stat_comp:
     print("Parsing: " + str(page_to_parse) + " completed")
     print("")
 else:
-    print("There was an issue with parsing")
+    print("There might have been an issue with parsing")
     print("")
 
 # Lists
@@ -48,7 +51,7 @@ goal_diff_list = []
 points_list = []
 
 # Excel lists
-all_list = [squad_list,games_list,wins_list,draws_list,losses_list,goals_for_list,goals_against_list,points_list]
+all_list = [squad_list,games_list,wins_list,draws_list,losses_list,goals_for_list,goals_against_list,goal_diff_list,points_list]
 to_parse = ["squad","games","wins","draws","losses","goals_for","goals_against","goal_diff","points"]
 
 # Status notice
@@ -81,7 +84,7 @@ squad_count = len(squad_list)
 startrow = 1
 startcol = 0
 for lst in all_list:
-    for var in lst[:int(squad_count)]:
+    for var in lst:
         worksheet.write(startrow, startcol, var)
         startrow += 1
     startrow = 1
