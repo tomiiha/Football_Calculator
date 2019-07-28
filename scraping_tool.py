@@ -22,10 +22,11 @@ season_numb = season_numb[1:10]
 # Capture team name
 team_name = parse_page.find('h1')
 team_name = team_name.get_text()
-team_name = team_name[12:]
+end_name = team_name.find('Stats') - 1
+team_name = team_name[11:end_name]
 
 # Load data file to use
-workbook_name = r'Data\Northampton Town Season ' + str(season_numb) + '.xlsx'
+workbook_name = "Data " + team_name + " Season "  + str(season_numb) + '.xlsx'
 workbook = xsl.Workbook(workbook_name)
 worksheet = workbook.add_worksheet()
 
