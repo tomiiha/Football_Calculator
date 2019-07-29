@@ -21,14 +21,14 @@ sports_data = pd.concat(sports_data)
 sports_data = sports_data.fillna(value = 0)
 
 # Add Over-90 calculations
-sports_data['G/90'] = sports_data['goals']/(sports_data['minutes']/90)
-sports_data['A/90'] = sports_data['assists']/(sports_data['minutes']/90)
-sports_data['G+A/90'] = (sports_data['goals'] + sports_data['assists'])/(sports_data['minutes']/90)
-sports_data['G-PK/90'] = (sports_data['goals'] - sports_data['pens_made'])/(sports_data['minutes']/90)
-sports_data['G-PK+A/90'] = ((sports_data['goals'] - sports_data['pens_made']) + sports_data['assists'])/(sports_data['minutes']/90)
+sports_data['G/90'] = sports_data['goals'] / (sports_data['minutes'] / 90)
+sports_data['A/90'] = sports_data['assists'] / (sports_data['minutes'] / 90)
+sports_data['G+A/90'] = (sports_data['goals'] + sports_data['assists']) / (sports_data['minutes'] / 90)
+sports_data['G-PK/90'] = (sports_data['goals'] - sports_data['pens_made']) / (sports_data['minutes'] / 90)
+sports_data['G+A-PK/90'] = ((sports_data['goals'] - sports_data['pens_made']) + sports_data['assists']) / (sports_data['minutes'] / 90)
 sports_data['SOT/90'] = sports_data['shots_on_target']/(sports_data['minutes']/90)
 sports_data['F/90'] = sports_data['fouls']/(sports_data['minutes']/90)
-sports_data['C/90'] = (sports_data['cards_yellow'] + sports_data['cards_red'])/(sports_data['minutes']/90)
+sports_data['C/90'] = (sports_data['cards_yellow'] + sports_data['cards_red']) / (sports_data['minutes'] / 90)
 
 # Average calculation on the above calcs and parsed data
 sports_data = sports_data[sports_data.games >= excl_value].groupby('season').mean().T
