@@ -58,6 +58,13 @@ to_parse = ["squad","games","wins","draws","losses","goals_for","goals_against",
 print("Creating dataset")
 print("")
 
+# Create squad_list - unique instances
+findteam = parse_page.find_all('td',attrs={"data-stat":"squad"})
+for team in findteam:
+    addteam = team.get_text()
+    if addteam not in squad_list and addteam != 'coverage note':
+        squad_list.append(addteam)
+
 grab_list = 0
 for data_point in to_parse:
 	findinfo = parse_page.find_all('td',attrs={"data-stat":data_point})
@@ -84,7 +91,7 @@ squad_count = len(squad_list)
 startrow = 1
 startcol = 0
 for lst in all_list:
-    for var in lst:
+    for var in lst[:int(squad_count)]:
         worksheet.write(startrow, startcol, var)
         startrow += 1
     startrow = 1
