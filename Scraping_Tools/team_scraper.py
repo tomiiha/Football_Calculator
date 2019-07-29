@@ -40,7 +40,7 @@ if status_code[0] == stat_comp:
     print("Parsing: " + str(page_to_parse) + " completed")
     print("")
 else:
-    print("There was an issue with parsing")
+    print("There might have been an issue with parsing")
     print("")
 
 # Lists
