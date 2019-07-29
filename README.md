@@ -1,10 +1,11 @@
 # Football Scraping and Calculation tool
 
-Personal project to get a deeper understanding of sports analytics, to leverage for story telling later on for lower-tier leagues. Consists currently of the following programs: scraping_tool.py, league_scraper.py and season_calcs.py.
+Personal project to get a deeper understanding of sports analytics, to leverage for story telling later on for lower-tier leagues. The repository is going to be broken down into the following sections, and their respective programs:
 
-scraping_tool.py has been created to capture website data (fbref.com), that can be then fed into the season_calcs.py engine. This will run some simple metrics to track team performance. Currently in a very simplistic form, however expanding slowly to make scraping a bit easier, and then build the calculations engine to capture some narrative based off of these data.
-
-league_scraper.py is a tool to capture league -level detail, to get a better sense of the overall season results.
+- Calculators: Contains the calculators used to do analysis on the scraped data files. Currently consists only of 'season_calcs.py'. 'season_calcs.py' is a program that at this time simply recaps the team season-by-season data, and creates a summary of it fronm 2002-present. This includes all main captured data, as well as calculated over-90 calculations.
+- Data_Files: Has some example data files within it for calculation testing (these have been scraped, and produced as-is), as well as an example data urls file for list-based scraping. The latter is still in testing, as it hasn't worked too reliably.
+- Prove_Outs: is just a folder for some example manual calculations for the over-90 metrics. This was done in Excel, with one of the season files in Data_Files.
+- Scraping_Tools: is the main engine for the operation, currently able to scrape both team season data (i.e. the data recap for the entire season of a specific team), which is done with the 'team_scraper.py' program. The 'league_scraper.py' on the other hand is designed to capture a full season recap for the league, e.g. the points, goals, differentials for all teams. The latter is also used to produce the league team breakdowns, which will be consolidated to a summary file later for season-by-season team list use. The latter implementation is tentative as of now.
 
 # Currently building for the data parser:
 
