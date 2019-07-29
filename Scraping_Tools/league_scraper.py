@@ -87,11 +87,11 @@ for header in to_parse:
     startcol += 1
 
 # Fill data points into set per player count (to remove totals)
-squad_count = len(squad_list)
+squad_count = int(len(squad_list))
 startrow = 1
 startcol = 0
 for lst in all_list:
-    for var in lst[:int(squad_count)]:
+    for var in lst[:squad_count]:
         worksheet.write(startrow, startcol, var)
         startrow += 1
     startrow = 1
