@@ -6,7 +6,7 @@ import requests as reqs
 import xlsxwriter as xsl
 
 # Season used for file name - nothing fancy
-page_to_parse = 'https://fbref.com/en/squads/986a26c1/Northampton-Town'
+page_to_parse = 'https://fbref.com/en/squads/986a26c1/2018-2019/Northampton-Town'
 
 # Capture website
 page = reqs.get(page_to_parse)
@@ -83,7 +83,7 @@ for data_point in to_parse:
 	for datum in findinfo:
 		add_datum = datum.get_text()
 		if add_datum != 'coverage note':
-			all_list[grab_list].append(add_datum)
+			all_list[grab_list].append(add_datum.replace(',' , ''))
 	grab_list = grab_list + 1
 
 # Status notice
@@ -99,13 +99,30 @@ for header in to_parse:
     startcol += 1
 
 # Fill data points into set per player count (to remove totals)
+# Add text elements
 player_count = len(player_list)
 startrow = 1
 startcol = 0
-for lst in all_list:
+for lst in all_list[0:2]:
     for var in lst[:int(player_count)]:
-        worksheet.write(startrow, startcol, var)
+        worksheet.write(startrow, startcol, str(var))
         startrow += 1
+    startrow = 1
+    startcol = startcol + 1
+
+# Add number values
+player_count = len(player_list)
+startrow = 1
+startcol = 2
+for lst in all_list[2:]:
+    for var in lst[:int(player_count)]:
+        if var == '':
+            var = 0
+            worksheet.write(startrow, startcol, int(var))
+            startrow += 1
+        else:
+            worksheet.write(startrow, startcol, int(var))
+            startrow += 1
     startrow = 1
     startcol = startcol + 1
 
