@@ -72,8 +72,8 @@ for stat in find_fouls:
     add_foul = add_foul[:add_foul.find('\n')]
     add_foul_home = add_foul[:add_foul.find(working_stat)]
     add_foul_away = add_foul[(add_foul.find(working_stat) + stat_len):]
-    foul_list.append(add_foul_home)
-    foul_list.append(add_foul_away)
+    foul_list.append(int(add_foul_home))
+    foul_list.append(int(add_foul_away))
 
 print(team_list[team_index])
 print(score_list[team_index])
