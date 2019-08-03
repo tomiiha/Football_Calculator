@@ -9,7 +9,7 @@ import xlsxwriter as xsl
 team_to_scrape = "Northampton Town"
 
 # Season used for file name - nothing fancy
-page_to_parse = 'https://fbref.com/en/matches/033092ef/Northampton-Town-Lincoln-City-August-4-2018-League-Two'
+page_to_parse = 'https://fbref.com/en/matches/ea736ad1/Carlisle-United-Northampton-Town-August-11-2018-League-Two'
 
 # Capture website
 page = reqs.get(page_to_parse)
@@ -30,11 +30,13 @@ else:
 team_list = []
 score_list = []
 manager_list = []
-stat_list = []
 foul_list = []
 corner_list = []
 cross_list = []
 touch_list = []
+
+# weekday_list used for date capture
+weekday_list = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 
 # Capture team names (index 0 is home, index 1 is away)
 team_names = parse_page.find_all("div", itemprop="performer")
@@ -52,12 +54,28 @@ if team_list[0] == team_to_scrape:
     team_index = 0
 elif team_list[1] == team_to_scrape:
     team_index = 1
+    
+# Capture game_date
+find_date = parse_page.find("h1")
+add_date = find_date.get_text()
+for date in weekday_list:
+    if add_date.find(date) != -1:
+        date_pos = add_date.find(date)
+        date_len = len(date)
+        game_date = add_date[(date_pos + date_len + 1):]
 
 # Capture game score
 game_scores = parse_page.find_all("div",{"class":"score"})
 for score in game_scores:
     add_score = score.get_text()
     score_list.append(int(add_score))
+    
+# Capture managers (remove captains)
+game_manager = parse_page.find_all("div",{"class":"datapoint"})
+for manager in game_manager:
+    add_manager = manager.get_text()
+    if "Captain:" not in add_manager:    
+        manager_list.append(str(add_manager[9:]))
     
 # Stats are broken down into two divs in the page, list of these elements
 extra_stats = ["Fouls","Corners","Crosses","Touches"]
@@ -72,9 +90,11 @@ for stat in find_fouls:
     add_foul = add_foul[:add_foul.find('\n')]
     add_foul_home = add_foul[:add_foul.find(working_stat)]
     add_foul_away = add_foul[(add_foul.find(working_stat) + stat_len):]
-    foul_list.append(int(add_foul_home))
-    foul_list.append(int(add_foul_away))
+    foul_list.append(add_foul_home)
+    foul_list.append(add_foul_away)
 
+print(game_date)
 print(team_list[team_index])
+print(manager_list[team_index])
 print(score_list[team_index])
 print(foul_list[team_index])
