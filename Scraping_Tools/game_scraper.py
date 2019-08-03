@@ -9,7 +9,7 @@ import xlsxwriter as xsl
 team_to_scrape = "Northampton Town"
 
 # Season used for file name - nothing fancy
-page_to_parse = 'https://fbref.com/en/matches/ea736ad1/Carlisle-United-Northampton-Town-August-11-2018-League-Two'
+page_to_parse = 'https://fbref.com/en/matches/033092ef/Northampton-Town-Lincoln-City-August-4-2018-League-Two'
 
 # Capture website
 page = reqs.get(page_to_parse)
