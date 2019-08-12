@@ -80,7 +80,7 @@ for manager in game_manager:
 # Stats are broken down into two divs in the page, list of these elements
 extra_stats = ["Fouls","Corners","Crosses","Touches"]
 
-# Create stat lists for extra_stats
+# Find fouls, add to list
 working_stat = extra_stats[0]
 stat_len = len(working_stat)
 find_fouls = parse_page.find_all('div',id="team_stats_extra")
@@ -90,11 +90,40 @@ for stat in find_fouls:
     add_foul = add_foul[:add_foul.find('\n')]
     add_foul_home = add_foul[:add_foul.find(working_stat)]
     add_foul_away = add_foul[(add_foul.find(working_stat) + stat_len):]
-    foul_list.append(add_foul_home)
-    foul_list.append(add_foul_away)
+    foul_list.append(int(add_foul_home))
+    foul_list.append(int(add_foul_away))
 
-print(game_date)
-print(team_list[team_index])
-print(manager_list[team_index])
-print(score_list[team_index])
-print(foul_list[team_index])
+# Find corners, add to list
+working_stat = extra_stats[1]
+foul_tot_len = len(add_foul_home + add_foul_away + extra_stats[0])
+stat_len = len(working_stat)
+find_corners = parse_page.find_all('div',id="team_stats_extra")
+for stat in find_corners:
+    add_corner = stat.find_next('div').get_text()
+    add_corner = add_corner[(home_len + away_len - 2):]
+    add_corner_home = add_corner[foul_tot_len + 1:add_corner.find(working_stat)]
+    add_corner_away = add_corner[(add_corner.find(working_stat) + stat_len)]
+    corner_list.append(int(add_corner_home))
+    corner_list.append(int(add_corner_away))
+    
+working_stat = extra_stats[2]
+corner_tot_len = len(add_corner_home + add_corner_away + extra_stats[1]) + foul_tot_len
+stat_len = len(working_stat)
+find_corners = parse_page.find_all('div',id="team_stats_extra")
+for stat in find_corners:
+    add_cross = stat.find_next('div').get_text()
+    add_cross = add_corner[(home_len + away_len - 2):]
+    add_cross_home = add_cross[corner_tot_len + 1:add_cross.find(working_stat)]
+    add_cross_away = add_cross[(add_cross.find(working_stat) + stat_len)]
+    cross_list.append(add_cross_home)
+    cross_list.append(add_cross_away)
+    print(corner_tot_len)
+
+#print(game_date)
+#print(team_list[team_index])
+#print(manager_list[team_index])
+#print(score_list[team_index])
+#print(foul_list[team_index])
+#print(corner_list[team_index])
+print(cross_list)
+#print(touch_list)
