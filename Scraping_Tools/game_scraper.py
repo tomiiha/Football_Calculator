@@ -105,7 +105,8 @@ for stat in find_corners:
     add_corner_away = add_corner[(add_corner.find(working_stat) + stat_len)]
     corner_list.append(int(add_corner_home))
     corner_list.append(int(add_corner_away))
-    
+
+# Find crosses, add to list    
 working_stat = extra_stats[2]
 corner_tot_len = len(add_corner_home + add_corner_away + extra_stats[1]) + foul_tot_len
 stat_len = len(working_stat)
