@@ -119,7 +119,7 @@ for stat in find_corners:
     cross_list.append(add_cross_away)
     print(corner_tot_len)
 
-# Prints to test out the output prior to excel generation
+# Prints to test out the output prior to adding in excel generation
 #print(game_date)
 #print(team_list[team_index])
 #print(manager_list[team_index])
