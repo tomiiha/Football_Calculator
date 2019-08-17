@@ -1,6 +1,6 @@
 # Note: https://fbref.com/robots.txt
-# Start with https://fbref.com/en/matches/033092ef/Northampton-Town-Lincoln-City-August-4-2018-League-Two
-# https://fbref.com/en/matches/ea736ad1/Carlisle-United-Northampton-Town-August-11-2018-League-Two
+# Home test: https://fbref.com/en/matches/033092ef/Northampton-Town-Lincoln-City-August-4-2018-League-Two
+# Away test: https://fbref.com/en/matches/ea736ad1/Carlisle-United-Northampton-Town-August-11-2018-League-Two
 
 from bs4 import BeautifulSoup as bsoup
 import requests as reqs
@@ -10,7 +10,7 @@ import xlsxwriter as xsl
 team_to_scrape = "Northampton Town"
 
 # Season used for file name - nothing fancy
-page_to_parse = 'https://fbref.com/en/matches/ea736ad1/Carlisle-United-Northampton-Town-August-11-2018-League-Two'
+page_to_parse = 'https://fbref.com/en/matches/033092ef/Northampton-Town-Lincoln-City-August-4-2018-League-Two'
 
 # Capture website
 page = reqs.get(page_to_parse)
@@ -117,9 +117,23 @@ for stat in find_corners:
     add_cross = add_cross[(home_len + away_len - 2):]
     add_cross_home = add_cross[corner_tot_len + 1:add_cross.find(working_stat)]
     add_cross_away = add_cross[(add_cross.find(working_stat) + stat_len)]
-    cross_list.append(add_cross_home)
-    cross_list.append(add_cross_away)
+    cross_list.append(int(add_cross_home))
+    cross_list.append(int(add_cross_away))
 
+# Find touches, add to list
+working_stat = extra_stats[3]
+cross_tot_len = len(add_cross_home + add_cross_away + extra_stats[2]) + corner_tot_len
+stat_len = len(working_stat)
+find_corners = parse_page.find_all('div',id="team_stats_extra")
+for stat in find_corners:
+    add_touch = stat.find_next('div').get_text()
+    add_touch = add_touch[(home_len + away_len - 2):]
+    add_touch_home = add_touch[cross_tot_len + 1:add_touch.find(working_stat)]
+    add_touch_away = add_touch[(add_touch.find(working_stat) + stat_len):]
+    touch_list.append(int(add_touch_home))
+    touch_list.append(int(add_touch_away))
+
+# Test and note varibables sparsed - all below should be working correctly, but do spot-test
 #print(game_date)
 #print(team_list[team_index])
 #print(manager_list[team_index])
@@ -127,4 +141,4 @@ for stat in find_corners:
 #print(foul_list[team_index])
 #print(corner_list[team_index])
 #print(cross_list[team_index])
-#print(touch_list)
+#print(touch_list[team_index])
