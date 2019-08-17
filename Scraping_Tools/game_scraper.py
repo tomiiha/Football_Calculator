@@ -10,7 +10,11 @@ import xlsxwriter as xsl
 team_to_scrape = "Northampton Town"
 
 # Season used for file name - nothing fancy
-page_to_parse = 'https://fbref.com/en/matches/033092ef/Northampton-Town-Lincoln-City-August-4-2018-League-Two'
+home_tests = ["https://fbref.com/en/matches/033092ef/Northampton-Town-Lincoln-City-August-4-2018-League-Two", "https://fbref.com/en/matches/e5590f2e/Northampton-Town-Cambridge-United-August-18-2018-League-Two"]
+away_tests = ["https://fbref.com/en/matches/ea736ad1/Carlisle-United-Northampton-Town-August-11-2018-League-Two", "https://fbref.com/en/matches/46c9cbcb/Morecambe-Northampton-Town-August-21-2018-League-Two"]
+
+# Choose home or away game from lists above - indices 0-1
+page_to_parse = home_tests[1]
 
 # Capture website
 page = reqs.get(page_to_parse)
