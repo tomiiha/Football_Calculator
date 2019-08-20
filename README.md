@@ -18,7 +18,7 @@ Personal project to get a deeper understanding of sports analytics, to leverage 
 # Currently building for the calculation engine:
 
 - Automate team list for calculating all teams at once - currently dependent on manual entry.
-- Calculate player performance throughout seasons.
+- Calculate player performance throughout seasons (some stats are not shared on a player -level).
 - Replicate FiveThirtyEight model for team success predictions.
 - Apply some basic models (TBD) for team level analytics.
 
