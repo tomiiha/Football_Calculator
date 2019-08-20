@@ -11,6 +11,7 @@ Personal project to get a deeper understanding of sports analytics, to leverage 
 
 # Currently building for the data parser:
 
+- Capture team-level data on each individual game, for a full season capture of game-by-game performance.
 - Use Data URLs.xlsx to feed the parser instead of single, manual URLs, for easy team one-off parsing. Current scope simply 2002 onward.
 - Use League Two/League One Teams per Season files to feed team listings for parser, to get all teams at once. All needed is the URL team codes, and the rest can be automated.
 
