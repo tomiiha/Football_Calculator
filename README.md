@@ -24,7 +24,7 @@ Personal project to get a deeper understanding of sports analytics, to leverage 
 # Legend and Notes:
 
 - Calculation notation: Goals (G), Assists (A), Penalties (PK), Shots on Target (SOT), Fouls (F), Cards (C), Per 90 Minutes (/90), Total Minutes Played (TM).
-- Math for over 90s is simple, for example G+A-PK/90: ((G-PK)+A)/(TM/90). The float result effectively will define a simple performance metric to start with. Attached is also a manual prove-out of some of the metrics, as fref has them (Per90 Manual Prove Out.xlsx).
+- Math for over 90s is simple, for example G+A-PK/90: ((G-PK)+A)/(TM/90). The float result effectively will define a simple performance metric to start with. Attached is also a manual prove-out of some of the metrics, as fbref has them (Per90 Manual Prove Out.xlsx).
 
 # Data Sources:
 - https://www.github.com/jalapic/engsoccerdata
