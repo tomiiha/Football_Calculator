@@ -5,16 +5,16 @@
 from bs4 import BeautifulSoup as bsoup
 import requests as reqs
 import xlsxwriter as xsl
+import re
 
 # Define what team we want the data for
 team_to_scrape = "Northampton Town"
 
 # Season used for file name - nothing fancy
-home_tests = ["https://fbref.com/en/matches/033092ef/Northampton-Town-Lincoln-City-August-4-2018-League-Two", "https://fbref.com/en/matches/e5590f2e/Northampton-Town-Cambridge-United-August-18-2018-League-Two"]
-away_tests = ["https://fbref.com/en/matches/ea736ad1/Carlisle-United-Northampton-Town-August-11-2018-League-Two", "https://fbref.com/en/matches/46c9cbcb/Morecambe-Northampton-Town-August-21-2018-League-Two"]
+home_test = "https://fbref.com/en/matches/033092ef/Northampton-Town-Lincoln-City-August-4-2018-League-Two"
 
 # Choose home or away game from lists above - indices 0-1
-page_to_parse = home_tests[1]
+page_to_parse = home_test
 
 # Capture website
 page = reqs.get(page_to_parse)
@@ -39,6 +39,8 @@ foul_list = []
 corner_list = []
 cross_list = []
 touch_list = []
+temp_list = []
+temp_stat_list = []
 
 # weekday_list used for date capture
 weekday_list = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
@@ -81,68 +83,82 @@ for manager in game_manager:
     add_manager = manager.get_text()
     if "Captain:" not in add_manager:    
         manager_list.append(str(add_manager[9:]))
-    
+        
+# Find teams for removal (as they differ at times from the main ones), add to list
+find_stats = parse_page.find_all('div',{'class':'th'})
+for stat in find_stats:
+    add_stat = stat.get_text()
+    temp_list.append(add_stat)
+team_one_len = len(temp_list[0])
+team_two_len = len(temp_list[2])
+
+# Find stat locations for parsing
+find_stats = parse_page.find_all('div',id="team_stats_extra")
+for stat in find_stats:
+    add_stats = stat.find_next('div').get_text()
+    add_stats = add_stats[(add_stats.find('\n') + 1):]
+    add_stats = add_stats[(team_one_len + team_two_len + 2):]
+    index_list = [m.start() for m in re.finditer('\n', str(add_stats))]
+
+temp_stat_list.append(add_stats[:(index_list[0])])
+temp_stat_list.append(add_stats[index_list[0] + 1:index_list[1]])
+temp_stat_list.append(add_stats[index_list[1] + 1:index_list[2]])
+temp_stat_list.append(add_stats[index_list[2] + 1:index_list[3]])
+
 # Stats are broken down into two divs in the page, list of these elements
+# Need to attempt to just loop the stat_picker part, which works, however the list name isn't cycling
+stat_picker = 0
 extra_stats = ["Fouls","Corners","Crosses","Touches"]
-
-# Find fouls, add to list
-working_stat = extra_stats[0]
+stat_list = ["foul_list","corner_list","cross_list","touch_list"]
+working_stat = extra_stats[stat_picker]
+working_list = stat_list[stat_picker]
 stat_len = len(working_stat)
-find_fouls = parse_page.find_all('div',id="team_stats_extra")
-for stat in find_fouls:
-    add_foul = stat.find_next('div').get_text()
-    add_foul = add_foul[(home_len + away_len - 2):]
-    add_foul = add_foul[:add_foul.find('\n')]
-    add_foul_home = add_foul[:add_foul.find(working_stat)]
-    add_foul_away = add_foul[(add_foul.find(working_stat) + stat_len):]
-    foul_list.append(int(add_foul_home))
-    foul_list.append(int(add_foul_away))
+add_stat_home = temp_stat_list[stat_picker]
+add_stat_home = add_stat_home[:add_stat_home.find(working_stat)]
+foul_list.append(int(add_stat_home))
+add_stat_away = temp_stat_list[stat_picker]
+add_stat_away = add_stat_away[(add_stat_away.find(working_stat) + stat_len):]
+foul_list.append(int(add_stat_away))
 
-# Find corners, add to list
-working_stat = extra_stats[1]
-foul_tot_len = len(add_foul_home + add_foul_away + extra_stats[0])
+stat_picker = 1
+working_stat = extra_stats[stat_picker]
+working_list = stat_list[stat_picker]
 stat_len = len(working_stat)
-find_corners = parse_page.find_all('div',id="team_stats_extra")
-for stat in find_corners:
-    add_corner = stat.find_next('div').get_text()
-    add_corner = add_corner[(home_len + away_len - 2):]
-    add_corner_home = add_corner[foul_tot_len + 1:add_corner.find(working_stat)]
-    add_corner_away = add_corner[(add_corner.find(working_stat) + stat_len)]
-    corner_list.append(int(add_corner_home))
-    corner_list.append(int(add_corner_away))
+add_stat_home = temp_stat_list[stat_picker]
+add_stat_home = add_stat_home[:add_stat_home.find(working_stat)]
+corner_list.append(int(add_stat_home))
+add_stat_away = temp_stat_list[stat_picker]
+add_stat_away = add_stat_away[(add_stat_away.find(working_stat) + stat_len):]
+corner_list.append(int(add_stat_away))
 
-# Find crosses, add to list
-working_stat = extra_stats[2]
-corner_tot_len = len(add_corner_home + add_corner_away + extra_stats[1]) + foul_tot_len
+stat_picker = 2
+working_stat = extra_stats[stat_picker]
+working_list = stat_list[stat_picker]
 stat_len = len(working_stat)
-find_corners = parse_page.find_all('div',id="team_stats_extra")
-for stat in find_corners:
-    add_cross = stat.find_next('div').get_text()
-    add_cross = add_cross[(home_len + away_len - 2):]
-    add_cross_home = add_cross[corner_tot_len + 1:add_cross.find(working_stat)]
-    add_cross_away = add_cross[(add_cross.find(working_stat) + stat_len)]
-    cross_list.append(int(add_cross_home))
-    cross_list.append(int(add_cross_away))
+add_stat_home = temp_stat_list[stat_picker]
+add_stat_home = add_stat_home[:add_stat_home.find(working_stat)]
+cross_list.append(int(add_stat_home))
+add_stat_away = temp_stat_list[stat_picker]
+add_stat_away = add_stat_away[(add_stat_away.find(working_stat) + stat_len):]
+cross_list.append(int(add_stat_away))
 
-# Find touches, add to list
-working_stat = extra_stats[3]
-cross_tot_len = len(add_cross_home + add_cross_away + extra_stats[2]) + corner_tot_len
+stat_picker = 3
+working_stat = extra_stats[stat_picker]
+working_list = stat_list[stat_picker]
 stat_len = len(working_stat)
-find_corners = parse_page.find_all('div',id="team_stats_extra")
-for stat in find_corners:
-    add_touch = stat.find_next('div').get_text()
-    add_touch = add_touch[(home_len + away_len - 2):]
-    add_touch_home = add_touch[cross_tot_len + 1:add_touch.find(working_stat)]
-    add_touch_away = add_touch[(add_touch.find(working_stat) + stat_len):]
-    touch_list.append(int(add_touch_home))
-    touch_list.append(int(add_touch_away))
+add_stat_home = temp_stat_list[stat_picker]
+add_stat_home = add_stat_home[:add_stat_home.find(working_stat)]
+touch_list.append(int(add_stat_home))
+add_stat_away = temp_stat_list[stat_picker]
+add_stat_away = add_stat_away[(add_stat_away.find(working_stat) + stat_len):]
+touch_list.append(int(add_stat_away))
 
-# Test and note varibables sparsed - all below should be working correctly, but do spot-test
-#print(game_date)
-#print(team_list[team_index])
-#print(manager_list[team_index])
-#print(score_list[team_index])
-#print(foul_list[team_index])
-#print(corner_list[team_index])
-#print(cross_list[team_index])
-#print(touch_list[team_index])
+# Print all the game outputs, per the side chosen
+print(game_date)
+print(team_list[team_index])
+print(manager_list[team_index])
+print(score_list[team_index])
+print(foul_list[team_index])
+print(corner_list[team_index])
+print(cross_list[team_index])
+print(touch_list[team_index])
