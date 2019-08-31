@@ -12,6 +12,7 @@ team_to_scrape = "Northampton Town"
 
 # Season used for file name - nothing fancy
 home_test = "https://fbref.com/en/matches/033092ef/Northampton-Town-Lincoln-City-August-4-2018-League-Two"
+away_test = "https://fbref.com/en/matches/ea736ad1/Carlisle-United-Northampton-Town-August-11-2018-League-Two"
 
 # Choose home or away game from lists above - indices 0-1
 page_to_parse = home_test
