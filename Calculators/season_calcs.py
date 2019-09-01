@@ -1,4 +1,4 @@
-# Calculation legend: # Goals (G), Assists (A), Penalties (PK), Shots on Target (SOT), Fouls (F), Cards (C)
+# Calculation legend: Goals (G), Assists (A), Penalties (PK), Shots on Target (SOT), Fouls (F), Cards (C), Per 90 Minutes (/90), Total Minutes Played (TM)
 import pandas as pd
 import glob, os
 
