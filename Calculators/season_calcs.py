@@ -10,7 +10,7 @@ for file in glob.glob("*.xlsx"):
     file = file[-14:-5]
     season_list.append(str(file))
     
-# Min games played, and parse list
+# Min games played defined in excl_value
 excl_value = 5
 to_parse = ["player","position","age","games","games_starts","games_subs","minutes","minutes_per_game","goals","assists","pens_made","pens_att","fouls","cards_yellow","cards_red","shots_on_target"]
 
