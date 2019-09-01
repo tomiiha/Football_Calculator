@@ -105,52 +105,21 @@ temp_stat_list.append(add_stats[index_list[1] + 1:index_list[2]])
 temp_stat_list.append(add_stats[index_list[2] + 1:index_list[3]])
 
 # Stats are broken down into two divs in the page, list of these elements
-# Need to attempt to just loop the stat_picker part, which works, however the list name isn't cycling
 stat_picker = 0
 extra_stats = ["Fouls","Corners","Crosses","Touches"]
-stat_list = ["foul_list","corner_list","cross_list","touch_list"]
-working_stat = extra_stats[stat_picker]
-working_list = stat_list[stat_picker]
-stat_len = len(working_stat)
-add_stat_home = temp_stat_list[stat_picker]
-add_stat_home = add_stat_home[:add_stat_home.find(working_stat)]
-foul_list.append(int(add_stat_home))
-add_stat_away = temp_stat_list[stat_picker]
-add_stat_away = add_stat_away[(add_stat_away.find(working_stat) + stat_len):]
-foul_list.append(int(add_stat_away))
-
-stat_picker = 1
-working_stat = extra_stats[stat_picker]
-working_list = stat_list[stat_picker]
-stat_len = len(working_stat)
-add_stat_home = temp_stat_list[stat_picker]
-add_stat_home = add_stat_home[:add_stat_home.find(working_stat)]
-corner_list.append(int(add_stat_home))
-add_stat_away = temp_stat_list[stat_picker]
-add_stat_away = add_stat_away[(add_stat_away.find(working_stat) + stat_len):]
-corner_list.append(int(add_stat_away))
-
-stat_picker = 2
-working_stat = extra_stats[stat_picker]
-working_list = stat_list[stat_picker]
-stat_len = len(working_stat)
-add_stat_home = temp_stat_list[stat_picker]
-add_stat_home = add_stat_home[:add_stat_home.find(working_stat)]
-cross_list.append(int(add_stat_home))
-add_stat_away = temp_stat_list[stat_picker]
-add_stat_away = add_stat_away[(add_stat_away.find(working_stat) + stat_len):]
-cross_list.append(int(add_stat_away))
-
-stat_picker = 3
-working_stat = extra_stats[stat_picker]
-working_list = stat_list[stat_picker]
-stat_len = len(working_stat)
-add_stat_home = temp_stat_list[stat_picker]
-add_stat_home = add_stat_home[:add_stat_home.find(working_stat)]
-touch_list.append(int(add_stat_home))
-add_stat_away = temp_stat_list[stat_picker]
-add_stat_away = add_stat_away[(add_stat_away.find(working_stat) + stat_len):]
-touch_list.append(int(add_stat_away))
+stat_list = [foul_list,corner_list,cross_list,touch_list]
+stat_list_len = len(stat_list) - 1
+while stat_picker <= stat_list_len:
+    working_stat = extra_stats[stat_picker]
+    working_list = stat_list[stat_picker]
+    stat_len = len(working_stat)
+    add_stat_home = temp_stat_list[stat_picker]
+    add_stat_home = add_stat_home[:add_stat_home.find(working_stat)]
+    stat_list[stat_picker].append(int(add_stat_home))
+    add_stat_away = temp_stat_list[stat_picker]
+    add_stat_away = add_stat_away[(add_stat_away.find(working_stat) + stat_len):]
+    stat_list[stat_picker].append(int(add_stat_away))
+    stat_picker = stat_picker + 1
 
 # Print all the game outputs, per the side chosen
 print(game_date)
