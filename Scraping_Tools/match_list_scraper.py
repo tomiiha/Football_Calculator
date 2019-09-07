@@ -1,5 +1,6 @@
 # Note: https://fbref.com/robots.txt
 # Start with https://fbref.com/en/squads/986a26c1/2018-2019/Northampton-Town
+# To be combined fully with game_scraper.py
 
 from bs4 import BeautifulSoup as bsoup
 import requests as reqs
