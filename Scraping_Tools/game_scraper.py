@@ -1,4 +1,5 @@
 # Note: https://fbref.com/robots.txt
+# Match capture example: https://fbref.com/en/squads/986a26c1/2018-2019/Northampton-Town
 
 from bs4 import BeautifulSoup as bsoup
 import requests as reqs
