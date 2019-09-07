@@ -1,5 +1,5 @@
 # Note: https://fbref.com/robots.txt
-# Match capture example: https://fbref.com/en/squads/986a26c1/2018-2019/Northampton-Town
+# Season capture example: https://fbref.com/en/squads/986a26c1/2018-2019/Northampton-Town
 
 from bs4 import BeautifulSoup as bsoup
 import requests as reqs
@@ -8,14 +8,40 @@ import re
 # Define what team we want the data for
 team_to_scrape = "Northampton Town"
 
-# Season used for file name - nothing fancy
-home_test = "https://fbref.com/en/matches/033092ef/Northampton-Town-Lincoln-City-August-4-2018-League-Two"
-away_test = "https://fbref.com/en/matches/ea736ad1/Carlisle-United-Northampton-Town-August-11-2018-League-Two"
+# URL for season to capture
+season_to_parse = 'https://fbref.com/en/squads/986a26c1/2018-2019/Northampton-Town'
 
-# Choose home or away game from lists above - indices 0-1
-page_to_parse = home_test
+# Capture the season overview page
+page = reqs.get(season_to_parse)
+status_code = page.status_code
+status_code = str(status_code)
+season_page = bsoup(page.content, 'html.parser')
 
-# Capture website
+# Lists
+team_list = []
+score_list = []
+manager_list = []
+foul_list = []
+corner_list = []
+cross_list = []
+touch_list = []
+temp_list = []
+temp_stat_list = []
+match_list = []
+
+# Capture all match URLs from the main season
+findinfo = season_page.find_all('td',attrs={"data-stat":"match_report"})
+for datum in findinfo:
+    add_datum = datum.find_next('a').attrs['href']
+    full_link = "https://fbref.com" + str(add_datum)
+    match_list.append(str(full_link))
+
+print(season_to_parse + ": Season matches captured")
+    
+# Grab game from match_list, for testing purposes for now without running the full list
+page_to_parse = match_list[1]
+
+# Capture game page from match_list
 page = reqs.get(page_to_parse)
 status_code = page.status_code
 status_code = str(status_code)
@@ -29,17 +55,6 @@ if status_code[0] == stat_comp:
 else:
     print("There might have been an issue with parsing")
     print("")
-
-# Lists
-team_list = []
-score_list = []
-manager_list = []
-foul_list = []
-corner_list = []
-cross_list = []
-touch_list = []
-temp_list = []
-temp_stat_list = []
 
 # weekday_list used for date capture
 weekday_list = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
@@ -61,7 +76,7 @@ if team_list[0] == team_to_scrape:
 elif team_list[1] == team_to_scrape:
     team_index = 1
 
-# Capture game_date
+# Capture game date
 find_date = parse_page.find("h1")
 add_date = find_date.get_text()
 for date in weekday_list:
@@ -122,6 +137,7 @@ while stat_picker <= stat_list_len:
     stat_list[stat_picker].append(int(add_stat_away))
     stat_picker = stat_picker + 1
 
+# Test outputs
 # Print all the game outputs, per the side chosen
 print(game_date)
 print(team_list[team_index])
