@@ -22,7 +22,9 @@ else:
     print("There might have been an issue with parsing")
     print("")
     
+match_list= []
+    
 findinfo = parse_page.find_all('td',attrs={"data-stat":"match_report"})
 for datum in findinfo:
-	add_datum = datum.get_text()
+    add_datum = datum.find_next('a',href=True)
     print(add_datum)
