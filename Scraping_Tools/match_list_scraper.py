@@ -1,5 +1,5 @@
 # Note: https://fbref.com/robots.txt
-# Start with https://fbref.com/en/squads/986a26c1/Northampton-Town
+# Start with https://fbref.com/en/squads/986a26c1/2018-2019/Northampton-Town
 
 from bs4 import BeautifulSoup as bsoup
 import requests as reqs
@@ -23,8 +23,10 @@ else:
     print("")
     
 match_list= []
-    
+
+# Capture all match URLs from the main season
 findinfo = parse_page.find_all('td',attrs={"data-stat":"match_report"})
 for datum in findinfo:
-    add_datum = datum.find_next('a',href=True)
-    print(add_datum)
+    add_datum = datum.find_next('a').attrs['href']
+    full_link = "https://fbref.com" + str(add_datum)
+    match_list.append(str(full_link))
