@@ -17,16 +17,6 @@ status_code = page.status_code
 status_code = str(status_code)
 season_page = bsoup(page.content, 'html.parser')
 
-# Lists
-team_list = []
-score_list = []
-manager_list = []
-foul_list = []
-corner_list = []
-cross_list = []
-touch_list = []
-temp_list = []
-temp_stat_list = []
 match_list = []
 
 # Capture all match URLs from the main season
@@ -37,113 +27,127 @@ for datum in findinfo:
     match_list.append(str(full_link))
 
 print(season_to_parse + ": Season matches captured")
-    
+
 # Grab game from match_list, for testing purposes for now without running the full list
-page_to_parse = match_list[1]
+# Remove list indices to run full season
+num_matches = len(match_list)
+for match in match_list[0:1]:
+    page_to_parse = match
+
+# Lists, also placed for clearing each instance
+    team_list = []
+    score_list = []
+    manager_list = []
+    foul_list = []
+    corner_list = []
+    cross_list = []
+    touch_list = []
+    temp_list = []
+    temp_stat_list = []
 
 # Capture game page from match_list
-page = reqs.get(page_to_parse)
-status_code = page.status_code
-status_code = str(status_code)
-parse_page = bsoup(page.content, 'html.parser')
+    page = reqs.get(page_to_parse)
+    status_code = page.status_code
+    status_code = str(status_code)
+    parse_page = bsoup(page.content, 'html.parser')
 
 # Status notice - stat_comp should start with 2 for parsing to have been completed
-stat_comp = "2"
-if status_code[0] == stat_comp:
-    print("Parsing: " + str(page_to_parse) + " completed")
-    print("")
-else:
-    print("There might have been an issue with parsing")
-    print("")
+    stat_comp = "2"
+    if status_code[0] == stat_comp:
+        print("Parsing: " + str(page_to_parse) + " completed")
+        print("")
+    else:
+        print("There might have been an issue with parsing")
+        print("")
 
 # weekday_list used for date capture
-weekday_list = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+    weekday_list = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
 
 # Capture team names (index 0 is home, index 1 is away)
-team_names = parse_page.find_all("div", itemprop="performer")
-for team in team_names:
-    add_team = team.find_next('a').get_text()
-    team_list.append(str(add_team))
+    team_names = parse_page.find_all("div", itemprop="performer")
+    for team in team_names:
+        add_team = team.find_next('a').get_text()
+        team_list.append(str(add_team))
 
 # Team name lengths for data clean-up
-home_len = len(team_list[0])
-away_len = len(team_list[1])
+    home_len = len(team_list[0])
+    away_len = len(team_list[1])
 
 # Considering all data is split left-right
 # Below chooses the data for the right team per team_to_scrape
-if team_list[0] == team_to_scrape:
-    team_index = 0
-elif team_list[1] == team_to_scrape:
-    team_index = 1
+    if team_list[0] == team_to_scrape:
+        team_index = 0
+    elif team_list[1] == team_to_scrape:
+        team_index = 1
 
 # Capture game date
-find_date = parse_page.find("h1")
-add_date = find_date.get_text()
-for date in weekday_list:
-    if add_date.find(date) != -1:
-        date_pos = add_date.find(date)
-        date_len = len(date)
-        game_date = add_date[(date_pos + date_len + 1):]
+    find_date = parse_page.find("h1")
+    add_date = find_date.get_text()
+    for date in weekday_list:
+        if add_date.find(date) != -1:
+            date_pos = add_date.find(date)
+            date_len = len(date)
+            game_date = add_date[(date_pos + date_len + 1):]
 
 # Capture game score
-game_scores = parse_page.find_all("div",{"class":"score"})
-for score in game_scores:
-    add_score = score.get_text()
-    score_list.append(int(add_score))
+    game_scores = parse_page.find_all("div",{"class":"score"})
+    for score in game_scores:
+        add_score = score.get_text()
+        score_list.append(int(add_score))
 
 # Capture managers (remove captains)
-game_manager = parse_page.find_all("div",{"class":"datapoint"})
-for manager in game_manager:
-    add_manager = manager.get_text()
-    if "Captain:" not in add_manager:
-        manager_list.append(str(add_manager[9:]))
+    game_manager = parse_page.find_all("div",{"class":"datapoint"})
+    for manager in game_manager:
+        add_manager = manager.get_text()
+        if "Captain:" not in add_manager:
+            manager_list.append(str(add_manager[9:]))
 
 # Find teams for removal (as they differ at times from the main ones), add to list
-find_stats = parse_page.find_all('div',{'class':'th'})
-for stat in find_stats:
-    add_stat = stat.get_text()
-    temp_list.append(add_stat)
-team_one_len = len(temp_list[0])
-team_two_len = len(temp_list[2])
+    find_stats = parse_page.find_all('div',{'class':'th'})
+    for stat in find_stats:
+        add_stat = stat.get_text()
+        temp_list.append(add_stat)
+    team_one_len = len(temp_list[0])
+    team_two_len = len(temp_list[2])
 
 # Find stat locations for parsing
-find_stats = parse_page.find_all('div',id="team_stats_extra")
-for stat in find_stats:
-    add_stats = stat.find_next('div').get_text()
-    add_stats = add_stats[(add_stats.find('\n') + 1):]
-    add_stats = add_stats[(team_one_len + team_two_len + 2):]
-    index_list = [m.start() for m in re.finditer('\n', str(add_stats))]
+    find_stats = parse_page.find_all('div',id="team_stats_extra")
+    for stat in find_stats:
+        add_stats = stat.find_next('div').get_text()
+        add_stats = add_stats[(add_stats.find('\n') + 1):]
+        add_stats = add_stats[(team_one_len + team_two_len + 2):]
+        index_list = [m.start() for m in re.finditer('\n', str(add_stats))]
 
 # Capture stats individually, as the code places the values together
-temp_stat_list.append(add_stats[:(index_list[0])])
-temp_stat_list.append(add_stats[index_list[0] + 1:index_list[1]])
-temp_stat_list.append(add_stats[index_list[1] + 1:index_list[2]])
-temp_stat_list.append(add_stats[index_list[2] + 1:index_list[3]])
+    temp_stat_list.append(add_stats[:(index_list[0])])
+    temp_stat_list.append(add_stats[index_list[0] + 1:index_list[1]])
+    temp_stat_list.append(add_stats[index_list[1] + 1:index_list[2]])
+    temp_stat_list.append(add_stats[index_list[2] + 1:index_list[3]])
 
 # Stats are broken down into two divs in the page, list of these elements
-stat_picker = 0
-extra_stats = ["Fouls","Corners","Crosses","Touches"]
-stat_list = [foul_list,corner_list,cross_list,touch_list]
-stat_list_len = len(stat_list) - 1
-while stat_picker <= stat_list_len:
-    working_stat = extra_stats[stat_picker]
-    working_list = stat_list[stat_picker]
-    stat_len = len(working_stat)
-    add_stat_home = temp_stat_list[stat_picker]
-    add_stat_home = add_stat_home[:add_stat_home.find(working_stat)]
-    stat_list[stat_picker].append(int(add_stat_home))
-    add_stat_away = temp_stat_list[stat_picker]
-    add_stat_away = add_stat_away[(add_stat_away.find(working_stat) + stat_len):]
-    stat_list[stat_picker].append(int(add_stat_away))
-    stat_picker = stat_picker + 1
+    stat_picker = 0
+    extra_stats = ["Fouls","Corners","Crosses","Touches"]
+    stat_list = [foul_list,corner_list,cross_list,touch_list]
+    stat_list_len = len(stat_list) - 1
+    while stat_picker <= stat_list_len:
+        working_stat = extra_stats[stat_picker]
+        working_list = stat_list[stat_picker]
+        stat_len = len(working_stat)
+        add_stat_home = temp_stat_list[stat_picker]
+        add_stat_home = add_stat_home[:add_stat_home.find(working_stat)]
+        stat_list[stat_picker].append(int(add_stat_home))
+        add_stat_away = temp_stat_list[stat_picker]
+        add_stat_away = add_stat_away[(add_stat_away.find(working_stat) + stat_len):]
+        stat_list[stat_picker].append(int(add_stat_away))
+        stat_picker = stat_picker + 1
 
 # Test outputs
 # Print all the game outputs, per the side chosen
-print(game_date)
-print(team_list[team_index])
-print(manager_list[team_index])
-print(score_list[team_index])
-print(foul_list[team_index])
-print(corner_list[team_index])
-print(cross_list[team_index])
-print(touch_list[team_index])
+    print(game_date)
+    print(team_list[team_index])
+    print(manager_list[team_index])
+    print(score_list[team_index])
+    print(foul_list[team_index])
+    print(corner_list[team_index])
+    print(cross_list[team_index])
+    print(touch_list[team_index])
