@@ -18,8 +18,6 @@ text = list(filter(None, text))
 while removal in text:
     text.remove(removal)
 
-text_picker = 0
-list_pick = 0
 for key in extra_stats_dict:
     for val in text:
         if key in val:
