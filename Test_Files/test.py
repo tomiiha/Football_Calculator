@@ -26,6 +26,13 @@ for key in extra_stats_dict:
             extra_stats_dict[key].append(int(stat_home))
             extra_stats_dict[key].append(int(stat_away))
 
+# Not all statistics are in place for all games
+# Below to check all lists, and apply 0 to unpopulated statistics 
+for y, x in extra_stats_dict.items():
+    if len(x) == 0:
+        x.append(0)
+        x.append(0)
+
 print(foul_list)
 print(corner_list)
 print(cross_list)
