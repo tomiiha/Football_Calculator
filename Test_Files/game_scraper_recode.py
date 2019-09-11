@@ -118,11 +118,13 @@ for match in match_list[0:2]:
     team_one_len = len(temp_list[0])
     team_two_len = len(temp_list[2])
 
-# Find stat locations for parsing
+# Capture match data details in text, to prep for parsing
     find_stats = parse_page.find_all('div',id="team_stats_extra")
     for stat in find_stats:
         add_stats = stat.find_next('div').get_text()
-    
+        
+# Parse individual statistics from the string - separate line breaks, and form into list
+# Also remove empty entries
     removal = temp_list[0] + temp_list[2]
     add_stats = add_stats.replace(u'\xa0', u'')
     add_stats = add_stats.split('\n')
@@ -130,6 +132,7 @@ for match in match_list[0:2]:
     while removal in add_stats:
         add_stats.remove(removal)
 
+# Parse above created list, and assign game statistics to appropriate lists per dictionary
     for key in extra_stats_dict:
         for val in add_stats:
             if key in val:
