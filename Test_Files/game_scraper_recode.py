@@ -32,7 +32,7 @@ print(season_to_parse + ": Season matches captured")
 # Grab game from match_list, for testing purposes for now without running the full list
 # Remove list indices to run full season
 num_matches = len(match_list)
-for match in match_list[0:2]:
+for match in match_list[0:1]:
     page_to_parse = match
     
 # Capture game page from match_list
