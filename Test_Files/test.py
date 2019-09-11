@@ -1,3 +1,6 @@
+newparse <div id="team_stats"> for <div><strong>58%</strong></div>
+
+
 team_list = ['Carlisle United','Northampton']
 index_list = []
 foul_list = []
