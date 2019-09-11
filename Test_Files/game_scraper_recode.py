@@ -34,6 +34,21 @@ print(season_to_parse + ": Season matches captured")
 num_matches = len(match_list)
 for match in match_list[0:2]:
     page_to_parse = match
+    
+# Capture game page from match_list
+    page = reqs.get(page_to_parse)
+    status_code = page.status_code
+    status_code = str(status_code)
+    parse_page = bsoup(page.content, 'html.parser')
+
+# Status notice - stat_comp should start with 2 for parsing to have been completed
+    stat_comp = "2"
+    if status_code[0] == stat_comp:
+        print("Parsing: " + str(page_to_parse) + " completed")
+        print("")
+    else:
+        print("There might have been an issue with parsing")
+        print("")
 
 # Lists, also placed for clearing each instance
     team_list = []
@@ -51,22 +66,6 @@ for match in match_list[0:2]:
     throw_in_list = []
     long_ball_list = []
     extra_stats_dict = {"Fouls":foul_list,"Corners":corner_list,"Crosses":cross_list,"Touches":touch_list,"Clearances":clearance_list,"Offsides":offside_list,"Goal Kicks":goal_kick_list,"Throw Ins":throw_in_list,"Long Balls":long_ball_list}
-
-
-# Capture game page from match_list
-    page = reqs.get(page_to_parse)
-    status_code = page.status_code
-    status_code = str(status_code)
-    parse_page = bsoup(page.content, 'html.parser')
-
-# Status notice - stat_comp should start with 2 for parsing to have been completed
-    stat_comp = "2"
-    if status_code[0] == stat_comp:
-        print("Parsing: " + str(page_to_parse) + " completed")
-        print("")
-    else:
-        print("There might have been an issue with parsing")
-        print("")
 
 # weekday_list used for date capture
     weekday_list = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
