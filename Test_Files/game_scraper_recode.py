@@ -140,6 +140,13 @@ for match in match_list[0:2]:
                 extra_stats_dict[key].append(int(stat_home))
                 extra_stats_dict[key].append(int(stat_away))
 
+# Not all statistics are in place for all games
+# Below to check all lists, and apply 0 to unpopulated statistics 
+    for y, x in extra_stats_dict.items():
+        if len(x) == 0:
+            x.append(0)
+            x.append(0)
+
 # Test outputs
 # Print all the game outputs, per the side chosen
     print(game_date)
