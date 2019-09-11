@@ -5,7 +5,6 @@
 
 from bs4 import BeautifulSoup as bsoup
 import requests as reqs
-import re
 
 # Define what team we want the data for
 team_to_scrape = "Northampton Town"
@@ -124,7 +123,7 @@ for match in match_list[0:1]:
     for stat in find_stats:
         add_stats = stat.find_next('div').get_text()
     
-    removal = team_list[0] + team_list[1]
+    removal = temp_list[0] + temp_list[2]
     add_stats = add_stats.replace(u'\xa0', u'')
     add_stats = add_stats.split('\n')
     add_stats = list(filter(None, add_stats))
@@ -149,3 +148,8 @@ for match in match_list[0:1]:
     print(corner_list[team_index])
     print(cross_list[team_index])
     print(touch_list[team_index])
+    print(clearance_list[team_index])
+    print(offside_list[team_index])
+    print(goal_kick_list[team_index])
+    print(throw_in_list[team_index])
+    print(long_ball_list[team_index])
