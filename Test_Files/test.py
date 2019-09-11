@@ -23,8 +23,8 @@ for key in extra_stats_dict:
         if key in val:
             stat_home = val[:val.find(key)]
             stat_away = val[(val.find(key) + len(key)):]
-            extra_stats_dict[key].append(stat_home)
-            extra_stats_dict[key].append(stat_away)
+            extra_stats_dict[key].append(int(stat_home))
+            extra_stats_dict[key].append(int(stat_away))
 
 print(foul_list)
 print(corner_list)
