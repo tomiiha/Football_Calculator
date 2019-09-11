@@ -65,6 +65,9 @@ for match in match_list[0:2]:
     goal_kick_list = []
     throw_in_list = []
     long_ball_list = []
+    possession_list = []
+    sot_list = []
+    save_list = []
     extra_stats_dict = {"Fouls":foul_list,"Corners":corner_list,"Crosses":cross_list,"Touches":touch_list,"Clearances":clearance_list,"Offsides":offside_list,"Goal Kicks":goal_kick_list,"Throw Ins":throw_in_list,"Long Balls":long_ball_list}
 
 # weekday_list used for date capture
