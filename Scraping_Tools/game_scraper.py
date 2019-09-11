@@ -3,7 +3,6 @@
 
 from bs4 import BeautifulSoup as bsoup
 import requests as reqs
-import re
 
 # Define what team we want the data for
 team_to_scrape = "Northampton Town"
@@ -31,20 +30,9 @@ print(season_to_parse + ": Season matches captured")
 # Grab game from match_list, for testing purposes for now without running the full list
 # Remove list indices to run full season
 num_matches = len(match_list)
-for match in match_list[0:1]:
+for match in match_list[0:2]:
     page_to_parse = match
-
-# Lists, also placed for clearing each instance
-    team_list = []
-    score_list = []
-    manager_list = []
-    foul_list = []
-    corner_list = []
-    cross_list = []
-    touch_list = []
-    temp_list = []
-    temp_stat_list = []
-
+    
 # Capture game page from match_list
     page = reqs.get(page_to_parse)
     status_code = page.status_code
@@ -59,6 +47,26 @@ for match in match_list[0:1]:
     else:
         print("There might have been an issue with parsing")
         print("")
+
+# Lists, also placed for clearing each instance
+    team_list = []
+    score_list = []
+    manager_list = []
+    temp_list = []
+    temp_stat_list = []
+    foul_list = []
+    corner_list = []
+    cross_list = []
+    touch_list = []
+    clearance_list = []
+    offside_list = []
+    goal_kick_list = []
+    throw_in_list = []
+    long_ball_list = []
+    possession_list = []
+    sot_list = []
+    save_list = []
+    extra_stats_dict = {"Fouls":foul_list,"Corners":corner_list,"Crosses":cross_list,"Touches":touch_list,"Clearances":clearance_list,"Offsides":offside_list,"Goal Kicks":goal_kick_list,"Throw Ins":throw_in_list,"Long Balls":long_ball_list}
 
 # weekday_list used for date capture
     weekday_list = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
@@ -110,36 +118,38 @@ for match in match_list[0:1]:
     team_one_len = len(temp_list[0])
     team_two_len = len(temp_list[2])
 
-# Find stat locations for parsing
-    find_stats = parse_page.find_all('div',id="team_stats_extra")
-    for stat in find_stats:
-        add_stats = stat.find_next('div').get_text()
-        add_stats = add_stats[(add_stats.find('\n') + 1):]
-        add_stats = add_stats[(team_one_len + team_two_len + 2):]
-        index_list = [m.start() for m in re.finditer('\n', str(add_stats))]
+# Capture match data details in text, to prep for parsing
+    find_stats = parse_page.find_all('div', id="team_stats_extra")
+    all_stats = find_stats[0].find_all('div', recursive=False)
+    for stat in all_stats:
+        temp_stat_list.append(stat.get_text())
 
-# Capture stats individually, as the code places the values together
-    temp_stat_list.append(add_stats[:(index_list[0])])
-    temp_stat_list.append(add_stats[index_list[0] + 1:index_list[1]])
-    temp_stat_list.append(add_stats[index_list[1] + 1:index_list[2]])
-    temp_stat_list.append(add_stats[index_list[2] + 1:index_list[3]])
+    add_stats = ''.join(temp_stat_list)
+        
+# Parse individual statistics from the string - separate line breaks, and form into list
+# Also remove empty entries
+    removal = temp_list[0] + temp_list[2]
+    add_stats = add_stats.replace(u'\xa0', u'')
+    add_stats = add_stats.split('\n')
+    add_stats = list(filter(None, add_stats))
+    while removal in add_stats:
+        add_stats.remove(removal)
 
-# Stats are broken down into two divs in the page, list of these elements
-    stat_picker = 0
-    extra_stats = ["Fouls","Corners","Crosses","Touches"]
-    stat_list = [foul_list,corner_list,cross_list,touch_list]
-    stat_list_len = len(stat_list) - 1
-    while stat_picker <= stat_list_len:
-        working_stat = extra_stats[stat_picker]
-        working_list = stat_list[stat_picker]
-        stat_len = len(working_stat)
-        add_stat_home = temp_stat_list[stat_picker]
-        add_stat_home = add_stat_home[:add_stat_home.find(working_stat)]
-        stat_list[stat_picker].append(int(add_stat_home))
-        add_stat_away = temp_stat_list[stat_picker]
-        add_stat_away = add_stat_away[(add_stat_away.find(working_stat) + stat_len):]
-        stat_list[stat_picker].append(int(add_stat_away))
-        stat_picker = stat_picker + 1
+# Parse above created list, and assign game statistics to appropriate lists per dictionary
+    for key in extra_stats_dict:
+        for val in add_stats:
+            if key in val:
+                stat_home = val[:val.find(key)]
+                stat_away = val[(val.find(key) + len(key)):]
+                extra_stats_dict[key].append(int(stat_home))
+                extra_stats_dict[key].append(int(stat_away))
+
+# Not all statistics are in place for all games
+# Below to check all lists, and apply 0 to unpopulated statistics 
+    for y, x in extra_stats_dict.items():
+        if len(x) == 0:
+            x.append(0)
+            x.append(0)
 
 # Test outputs
 # Print all the game outputs, per the side chosen
@@ -151,3 +161,8 @@ for match in match_list[0:1]:
     print(corner_list[team_index])
     print(cross_list[team_index])
     print(touch_list[team_index])
+    print(clearance_list[team_index])
+    print(offside_list[team_index])
+    print(goal_kick_list[team_index])
+    print(throw_in_list[team_index])
+    print(long_ball_list[team_index])
