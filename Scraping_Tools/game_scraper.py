@@ -3,12 +3,14 @@
 
 from bs4 import BeautifulSoup as bsoup
 import requests as reqs
+import xlsxwriter as xsl
 
 # Define what team we want the data for
 team_to_scrape = "Northampton Town"
 
 # URL for season to capture
 season_to_parse = 'https://fbref.com/en/squads/986a26c1/2018-2019/Northampton-Town'
+season_numb = "2018-2019"
 
 # Capture the season overview page
 page = reqs.get(season_to_parse)
@@ -26,6 +28,15 @@ for datum in findinfo:
     match_list.append(str(full_link))
 
 print(season_to_parse + ": Season matches captured")
+
+# Load data file to use
+workbook_name = "Data " + team_to_scrape + " Season Games "  + str(season_numb) + '.xlsx'
+workbook = xsl.Workbook(workbook_name)
+worksheet = workbook.add_worksheet()
+
+# Status notice
+print("Workbook " + str(workbook_name) + " created")
+print("")
 
 # Grab game from match_list, for testing purposes for now without running the full list
 # Remove list indices to run full season
@@ -166,3 +177,12 @@ for match in match_list[0:2]:
     print(goal_kick_list[team_index])
     print(throw_in_list[team_index])
     print(long_ball_list[team_index])
+    
+# Write data into excel sheet
+# Create row labels for data
+    startrow = 0
+    startcol = 0
+    for key in extra_stats_dict:
+        worksheet.write(startrow, startcol, header)
+        startrow += 1
+
