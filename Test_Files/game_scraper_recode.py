@@ -1,16 +1,16 @@
-# Complete re-code of the game scraper in testing
-
 # Note: https://fbref.com/robots.txt
 # Season capture example: https://fbref.com/en/squads/986a26c1/2018-2019/Northampton-Town
 
 from bs4 import BeautifulSoup as bsoup
 import requests as reqs
+import xlsxwriter as xsl
 
 # Define what team we want the data for
 team_to_scrape = "Northampton Town"
 
 # URL for season to capture
 season_to_parse = 'https://fbref.com/en/squads/986a26c1/2018-2019/Northampton-Town'
+season_numb = "2018-2019"
 
 # Capture the season overview page
 page = reqs.get(season_to_parse)
@@ -29,10 +29,19 @@ for datum in findinfo:
 
 print(season_to_parse + ": Season matches captured")
 
+# Load data file to use
+workbook_name = "Data " + team_to_scrape + " Season Games "  + str(season_numb) + '.xlsx'
+workbook = xsl.Workbook(workbook_name)
+worksheet = workbook.add_worksheet()
+
+# Status notice
+print("Workbook " + str(workbook_name) + " created")
+print("")
+
 # Grab game from match_list, for testing purposes for now without running the full list
 # Remove list indices to run full season
 num_matches = len(match_list)
-for match in match_list[0:1]:
+for match in match_list[0:2]:
     page_to_parse = match
     
 # Capture game page from match_list
@@ -68,7 +77,6 @@ for match in match_list[0:1]:
     possession_list = []
     sot_list = []
     save_list = []
-    extra_stats_dict = {"Fouls":foul_list,"Corners":corner_list,"Crosses":cross_list,"Touches":touch_list,"Clearances":clearance_list,"Offsides":offside_list,"Goal Kicks":goal_kick_list,"Throw Ins":throw_in_list,"Long Balls":long_ball_list}
 
 # weekday_list used for date capture
     weekday_list = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
@@ -121,9 +129,12 @@ for match in match_list[0:1]:
     team_two_len = len(temp_list[2])
 
 # Capture match data details in text, to prep for parsing
-    find_stats = parse_page.find_all('div',id="team_stats_extra")
-    for stat in find_stats:
-        add_stats = stat.find_next('div').get_text()
+    find_stats = parse_page.find_all('div', id="team_stats_extra")
+    all_stats = find_stats[0].find_all('div', recursive=False)
+    for stat in all_stats:
+        temp_stat_list.append(stat.get_text())
+
+    add_stats = ''.join(temp_stat_list)
         
 # Parse individual statistics from the string - separate line breaks, and form into list
 # Also remove empty entries
@@ -135,6 +146,7 @@ for match in match_list[0:1]:
         add_stats.remove(removal)
 
 # Parse above created list, and assign game statistics to appropriate lists per dictionary
+    extra_stats_dict = {"Teams":team_list,"Manager":manager_list,"Score":score_list,"Fouls":foul_list,"Corners":corner_list,"Crosses":cross_list,"Touches":touch_list,"Clearances":clearance_list,"Offsides":offside_list,"Goal Kicks":goal_kick_list,"Throw Ins":throw_in_list,"Long Balls":long_ball_list}
     for key in extra_stats_dict:
         for val in add_stats:
             if key in val:
@@ -152,16 +164,36 @@ for match in match_list[0:1]:
 
 # Test outputs
 # Print all the game outputs, per the side chosen
-    print(game_date)
-    print(team_list[team_index])
-    print(manager_list[team_index])
-    print(score_list[team_index])
-    print(foul_list[team_index])
-    print(corner_list[team_index])
-    print(cross_list[team_index])
-    print(touch_list[team_index])
-    print(clearance_list[team_index])
-    print(offside_list[team_index])
-    print(goal_kick_list[team_index])
-    print(throw_in_list[team_index])
-    print(long_ball_list[team_index])
+#    print(game_date)
+#    print(team_list[team_index])
+#    print(manager_list[team_index])
+#    print(score_list[team_index])
+#    print(foul_list[team_index])
+#    print(corner_list[team_index])
+#    print(cross_list[team_index])
+#    print(touch_list[team_index])
+#    print(clearance_list[team_index])
+#    print(offside_list[team_index])
+#    print(goal_kick_list[team_index])
+#    print(throw_in_list[team_index])
+#    print(long_ball_list[team_index])
+    
+# Write data into excel sheet
+# Create row labels for data
+    startrow = 0
+    startcol = 0
+    worksheet.write(startrow, startcol, game_date)
+    startrow += 1
+    for key in extra_stats_dict:
+        worksheet.write(startrow, startcol, key)
+        startrow += 1
+# Add data to columns by game
+    for z, p in extra_stats_dict.items():
+        worksheet.write(startrow, startcol, int(p[team_index]))
+        startrow += 1
+
+# Finish Excel creation
+workbook.close()
+
+# Status notice
+print(str(workbook_name) + " created successfully")
