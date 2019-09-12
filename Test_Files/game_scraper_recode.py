@@ -187,10 +187,12 @@ for match in match_list[0:2]:
     for key in extra_stats_dict:
         worksheet.write(startrow, startcol, key)
         startrow += 1
+    startcol += 1
 # Add data to columns by game
     for z, p in extra_stats_dict.items():
         worksheet.write(startrow, startcol, int(p[team_index]))
         startrow += 1
+    startcol += 1
 
 # Finish Excel creation
 workbook.close()
