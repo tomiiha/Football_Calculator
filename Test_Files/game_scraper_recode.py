@@ -182,13 +182,15 @@ for match in match_list[0:2]:
 # Create row labels for data
     startrow = 0
     startcol = 0
-    worksheet.write(startrow, startcol, game_date)
+    worksheet.write(startrow, startcol, "Game Date")
     startrow += 1
     for key in extra_stats_dict:
         worksheet.write(startrow, startcol, key)
         startrow += 1
     startcol += 1
 # Add data to columns by game
+    worksheet.write(startrow, startcol, game_date)
+    startrow += 1
     for z, p in extra_stats_dict.items():
         worksheet.write(startrow, startcol, int(p[team_index]))
         startrow += 1
