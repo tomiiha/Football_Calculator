@@ -133,7 +133,6 @@ for match in match_list[0:2]:
     all_stats = find_stats[0].find_all('div', recursive=False)
     for stat in all_stats:
         temp_stat_list.append(stat.get_text())
-
     add_stats = ''.join(temp_stat_list)
         
 # Parse individual statistics from the string - separate line breaks, and form into list
