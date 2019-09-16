@@ -6,7 +6,7 @@ import requests as reqs
 
 other_stat_list = []
 
-page_to_parse = https://fbref.com/en/matches/033092ef/Northampton-Town-Lincoln-City-August-4-2018-League-Two
+page_to_parse = 'https://fbref.com/en/matches/033092ef/Northampton-Town-Lincoln-City-August-4-2018-League-Two'
     
 page = reqs.get(season_to_parse)
 status_code = page.status_code
