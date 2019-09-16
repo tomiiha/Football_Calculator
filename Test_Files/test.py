@@ -1,47 +1,22 @@
+# Create new parse for possession, sot, saves totals
 newparse <div id="team_stats"> for <div><strong>58%</strong></div>
 
+from bs4 import BeautifulSoup as bsoup
+import requests as reqs
 
-team_list = ['Carlisle United','Northampton']
-index_list = []
-foul_list = []
-corner_list = []
-cross_list = []
-touch_list = []
-clearance_list = []
-offside_list = []
-goal_kick_list = []
-throw_in_list = []
-long_ball_list = []
-removal = team_list[0] + team_list[1]
-extra_stats_dict = {"Fouls":foul_list,"Corners":corner_list,"Crosses":cross_list,"Touches":touch_list,"Clearances":clearance_list,"Offsides":offside_list,"Goal Kicks":goal_kick_list,"Throw Ins":throw_in_list,"Long Balls":long_ball_list}
-text = '\n\nCarlisle United\xa0Northampton\n21Fouls12\n4Corners2\n10Crosses7\n83Touches101\n\n\nCarlisle United\xa0Northampton\n1Clearances1\n\n\nCarlisle United\xa0Northampton\n10Goal Kicks12\n16Throw Ins18\n15Long Balls17\n\n'
-text = text.replace(u'\xa0', u'')
-text = text.split('\n')
-text = list(filter(None, text))
-while removal in text:
-    text.remove(removal)
+other_stat_list = []
 
-for key in extra_stats_dict:
-    for val in text:
-        if key in val:
-            stat_home = val[:val.find(key)]
-            stat_away = val[(val.find(key) + len(key)):]
-            extra_stats_dict[key].append(int(stat_home))
-            extra_stats_dict[key].append(int(stat_away))
+page_to_parse = https://fbref.com/en/matches/033092ef/Northampton-Town-Lincoln-City-August-4-2018-League-Two
+    
+page = reqs.get(season_to_parse)
+status_code = page.status_code
+status_code = str(status_code)
+parse_page = bsoup(page.content, 'html.parser')
 
-# Not all statistics are in place for all games
-# Below to check all lists, and apply 0 to unpopulated statistics 
-for y, x in extra_stats_dict.items():
-    if len(x) == 0:
-        x.append(0)
-        x.append(0)
+find_other_stats = parse_page.find_all('div', id="team_stats_extra")
+all_other_stats = find_other_stats[0].find_all('div', recursive=False)
+for stat in all_other_stats:
+    add_other_stats = find_next('strong').get_text()
+     other_stat_list.append(add_team)
 
-print(foul_list)
-print(corner_list)
-print(cross_list)
-print(touch_list)
-print(clearance_list)
-print(offside_list)
-print(goal_kick_list)
-print(throw_in_list)
-print(long_ball_list)
+print(other_stat_list)
