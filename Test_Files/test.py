@@ -1,5 +1,5 @@
 # Create new parse for possession, sot, saves totals
-newparse <div id="team_stats"> for <div><strong>58%</strong></div>
+# <div id="team_stats"> for <div><strong>58%</strong></div>
 
 from bs4 import BeautifulSoup as bsoup
 import requests as reqs
@@ -13,7 +13,7 @@ status_code = page.status_code
 status_code = str(status_code)
 parse_page = bsoup(page.content, 'html.parser')
 
-find_other_stats = parse_page.find_all('div', id="team_stats_extra")
+find_other_stats = parse_page.find_all('div', id="team_stats")
 all_other_stats = find_other_stats[0].find_all('div', recursive=False)
 for stat in all_other_stats:
     add_other_stats = find_next('strong').get_text()
