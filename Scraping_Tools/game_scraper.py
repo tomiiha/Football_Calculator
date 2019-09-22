@@ -19,7 +19,7 @@ status_code = str(status_code)
 season_page = bsoup(page.content, 'html.parser')
 
 match_list = []
-stat_rows = ["Date","Team","Manager","Score","Fouls","Corners","Crosses","Touches","Clearances","Offsides","Goal Kicks","Throw Ins","Long Balls"]
+stat_rows = ["Date","Team","Manager","Score","Fouls","Corners","Crosses","Touches","Clearances","Offsides","Goal Kicks","Throw Ins","Long Balls","Possession","Shots on Goal","Shots","Shots on Goal Conc","Shots Conc","Saves"]
 
 # Capture all match URLs from the main season
 findinfo = season_page.find_all('td',attrs={"data-stat":"match_report"})
@@ -72,8 +72,6 @@ for match in match_list[0:3]:
     team_list = []
     score_list = []
     manager_list = []
-    temp_list = []
-    temp_stat_list = []
     foul_list = []
     corner_list = []
     cross_list = []
@@ -84,8 +82,17 @@ for match in match_list[0:3]:
     throw_in_list = []
     long_ball_list = []
     possession_list = []
+    shots_list = []
     sot_list = []
     save_list = []
+    shots_conc_list = []
+    sot_conc_list = []
+    other_stat_list = []
+    
+# Temporary lists for parsing
+    other_temp_list = []
+    temp_list = []
+    temp_stat_list = []
 
 # weekday_list used for date capture
     weekday_list = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
@@ -136,6 +143,54 @@ for match in match_list[0:3]:
         temp_list.append(add_stat)
     team_one_len = len(temp_list[0])
     team_two_len = len(temp_list[2])
+    
+    find_other_stats = parse_page.find('div', id="team_stats")
+    for val in find_other_stats.find_all('td'):
+        add_other_stats = val.get_text(strip=True)
+        other_temp_list.append(add_other_stats)
+
+# Parse possession
+    poss_home = other_temp_list[0]
+    poss_home = poss_home[:poss_home.find('%')]
+    possession_list.append(int(poss_home))
+    poss_away = other_temp_list[1]
+    poss_away = poss_away[:poss_away.find('%')]
+    possession_list.append(int(poss_away))
+
+# Parse home Shots and SOT
+    shooting_home = other_temp_list[2]
+    shooting_home = shooting_home[:shooting_home.find('\xa0')]
+    shots_home = shooting_home[(shooting_home.find('of') + 3):]
+    sot_home = shooting_home[:(shooting_home.find('of') - 1)]
+    shots_list.append(int(shots_home))
+    sot_list.append(int(sot_home))
+
+# Parse home Shots and SOT
+    shooting_away = other_temp_list[3]
+    shooting_away = shooting_away[(shooting_away.find('\xa0') + 1):]
+    shots_away = shooting_away[(shooting_away.find('of') + 3):]
+    sot_away = shooting_away[:(shooting_away.find('of') - 1)]
+    shots_list.append(int(shots_away))
+    sot_list.append(int(sot_away))
+
+# Parse home Saves and SOT Conceded
+    saving_home = other_temp_list[4]
+    saving_home = saving_home[:saving_home.find('\xa0')]
+    sot_conc_home = saving_home[(saving_home.find('of') + 3):]
+    saves_home = saving_home[:(saving_home.find('of') - 1)]
+    save_list.append(int(saves_home))
+    sot_conc_list.append(int(sot_conc_home))
+
+# Parse away Saves and SOT Conceded
+    saving_away = other_temp_list[5]
+    saving_away = saving_away[(saving_away.find('\xa0') + 1):]
+    sot_conc_away = saving_away[(saving_away.find('of') + 3):]
+    saves_away = saving_away[:(saving_away.find('of') - 1)]
+    save_list.append(int(saves_away))
+    sot_conc_list.append(int(sot_conc_away))
+    
+# Gather shots conceded from team_index, and respective opposite away/home stats
+
 
 # Capture match data details in text, to prep for parsing
     find_stats = parse_page.find_all('div', id="team_stats_extra")
@@ -154,7 +209,7 @@ for match in match_list[0:3]:
         add_stats.remove(removal)
 
 # Parse above created list, and assign game statistics to appropriate lists per dictionary
-    extra_stats_dict = {"Score":score_list,"Fouls":foul_list,"Corners":corner_list,"Crosses":cross_list,"Touches":touch_list,"Clearances":clearance_list,"Offsides":offside_list,"Goal Kicks":goal_kick_list,"Throw Ins":throw_in_list,"Long Balls":long_ball_list}
+    extra_stats_dict = {"Score":score_list,"Fouls":foul_list,"Corners":corner_list,"Crosses":cross_list,"Touches":touch_list,"Clearances":clearance_list,"Offsides":offside_list,"Goal Kicks":goal_kick_list,"Throw Ins":throw_in_list,"Long Balls":long_ball_list,"Possession":possession_list,"Shots on Goal":sot_list,"Shots":shots_list,"Shots on Goal Conceded":sot_conc_list,"Shots Conceded":shots_conc_list,"Saves":save_list}
     for key in extra_stats_dict:
         for val in add_stats:
             if key in val:
