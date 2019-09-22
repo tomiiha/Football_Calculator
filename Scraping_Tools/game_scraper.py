@@ -50,7 +50,7 @@ startcol += 1
 # Grab game from match_list, for testing purposes for now without running the full list
 # Remove list indices to run full season
 num_matches = len(match_list)
-for match in match_list[0:3]:
+for match in match_list:
     page_to_parse = match
     
 # Capture game page from match_list
@@ -190,7 +190,12 @@ for match in match_list[0:3]:
     sot_conc_list.append(int(sot_conc_away))
     
 # Gather shots conceded from team_index, and respective opposite away/home stats
-
+    if team_index == 0:
+        shots_conc_list.append(shots_away)
+        shots_conc_list.append(shots_home)
+    elif team_index == 1:
+        shots_conc_list.append(shots_home)
+        shots_conc_list.append(shots_away)
 
 # Capture match data details in text, to prep for parsing
     find_stats = parse_page.find_all('div', id="team_stats_extra")
