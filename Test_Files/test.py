@@ -1,21 +1,18 @@
-# Create new parse for possession, sot, saves totals
-# <div id="team_stats"> for <div><strong>58%</strong></div>
-
 from bs4 import BeautifulSoup as bsoup
 import requests as reqs
 
 other_stat_list = []
+other_temp_list = []
 
 page_to_parse = 'https://fbref.com/en/matches/033092ef/Northampton-Town-Lincoln-City-August-4-2018-League-Two'
-    
+
 page = reqs.get(page_to_parse)
-status_code = page.status_code
-status_code = str(status_code)
 parse_page = bsoup(page.content, 'html.parser')
 
 
-find_other_stats = parse_page.find_all('div', id="team_stats")
-for stat in find_other_stats:
-    add_other_stats = stat.find_next('strong').get_text()
-    other_stat_list.append(add_other_stats)
-    print(add_other_stats)
+find_other_stats = parse_page.find('div', id="team_stats")
+for val in find_other_stats.find_all('td'):
+    add_other_stats = val.get_text(strip=True)
+    other_temp_list.append(add_other_stats)
+
+print(other_temp_list)
