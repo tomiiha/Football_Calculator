@@ -19,7 +19,7 @@ Personal project to get a deeper understanding of sports analytics, to leverage 
 **The Scraping engine is now considered feature complete - currently working on optimization on some slow loops.**
 
 - [x] Adjusted for the scraping of the game list for a season.
-- [x] Built parser to run through season automatically, instead of game-by-game.
+- [x] Built parser to run through season automatically, instead of game-by-game via manual entry.
 - [x] Built simple statistical inference for 'conceded' statistics.
 
 ### Optimization:
