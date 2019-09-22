@@ -20,15 +20,15 @@ Personal project to get a deeper understanding of sports analytics, to leverage 
 - [x] Adjusted for the scraping of the game list for a season.
 - [x] Built parser to run through season automatically, instead of game-by-game.
 - [x] Built simple statistical inference for 'conceded' statistics.
-- [] Improve on statistics parsing speeds.
-- [] Increase the frequency of status indicators.
+- [ ] Improve on statistics parsing speeds.
+- [ ] Increase the frequency of status indicators.
 
 # Currently building for the calculation engine:
 
-- [] Automate team list for calculating all teams at once - currently dependent on manual entry.
-- [] Calculate player performance throughout seasons (some stats are not shared on a player -level).
-- [] Replicate FiveThirtyEight model for team success predictions.
-- [] Apply some basic models (TBD) for team level analytics.
+- [ ] Automate team list for calculating all teams at once - currently dependent on manual entry.
+- [ ] Calculate player performance throughout seasons (some stats are not shared on a player -level).
+- [ ] Replicate FiveThirtyEight model for team success predictions.
+- [ ] Apply some basic models (TBD) for team level analytics.
 
 # Legend and Notes:
 
