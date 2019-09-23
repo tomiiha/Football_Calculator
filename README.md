@@ -2,11 +2,13 @@
 
 Personal project to get a deeper understanding of sports analytics, to leverage for story telling later on for lower-tier leagues. The repository is going to be broken down into the following sections, and their respective programs:
 
-- **Calculators:** Contains the calculators used to do analysis on the scraped data files. Currently consists only of 'season_calcs.py'. 'season_calcs.py' is a program that at this time simply recaps the team season-by-season data, and creates a summary of it from 2002-present. This includes all main captured data, as well as calculated over-90 calculations.
+- **Calculators:** Contains the calculators used to do analysis on the scraped data files. 
+
+  1. 'season_calcs.py' is a program that at this time simply recaps the team season-by-season data, and creates a summary of it from 2002-present. This includes all main captured data, as well as calculated over-90 calculations.
 
 - **Data_Files:** Has some example data files within it for calculation testing (these have been scraped, and produced as-is). Contains example files of scraped data, and output format from main scraping engines.
 
-- **Prove_Outs:** Is just a folder for some example manual calculations for the over-90 metrics. This was done in Excel, with one of the season files in Data_Files.
+- **Prove_Outs:** Is just a folder for some example manual calculations for the over-90 metrics, and any other calculation prove-outs that are produced.
 
 - **Scraping_Tools:** Is the main engine for the operation, currently able to scrape both team season data (i.e. the data recap for the entire season of a specific team), which is done with the 'team_scraper.py' program. The 'league_scraper.py' on the other hand is designed to capture a full season recap for the league, e.g. the points, goals, differentials for all teams. The latter is also used to produce the league team breakdowns, which will be consolidated to a summary file later for season-by-season team list use. The latter implementation is tentative as of now. game_scraper.py is a way to capture game-level data (from fbref). match_list_scraper.py is used to capture the match lists used for whole season parsing. This has however been combined into the main game_scraper.py program, but will remain for posterity.
 
