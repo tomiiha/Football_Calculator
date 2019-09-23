@@ -47,11 +47,12 @@ for val in stat_rows:
     startrow += 1
 startcol += 1
 
-# Grab game from match_list, for testing purposes for now without running the full list
-# Remove list indices to run full season
+# Grab game from match_list, for testing purposes use 'match_list[0:2]'
 num_matches = len(match_list)
 for match in match_list:
     page_to_parse = match
+    
+print("Match list captured for parsing")
     
 # Capture game page from match_list
     page = reqs.get(page_to_parse)
@@ -229,6 +230,8 @@ for match in match_list:
         if len(x) == 0:
             x.append(0)
             x.append(0)
+            
+    print("Data parsing completed for " + str(page_to_parse))
 
 # Add data to columns by game
     startrow = 0
@@ -242,6 +245,8 @@ for match in match_list:
         worksheet.write(startrow, startcol, int(p[team_index]))
         startrow += 1
     startcol += 1
+    
+    print("Data added to excel sheet")
 
 # Finish Excel creation
 workbook.close()
