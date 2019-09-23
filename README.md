@@ -25,7 +25,7 @@ Personal project to get a deeper understanding of sports analytics, to leverage 
 ### Optimization:
 
 - [ ] Improve on statistics parsing speeds.
-- [ ] Increase the frequency of status indicators.
+- [x] Increase the frequency of status indicators.
 - [ ] Move data production into an SQL database, instead of files.
 
 ### Currently building for the calculation engine:
