@@ -14,7 +14,7 @@ Personal project to get a deeper understanding of sports analytics, to leverage 
 
   1. 'game_scraper.py' is the main scraping engine to capture game-level data, on a team for a single season. It will do so by capturing all the games of a specific season (based on URL), and gathering the main statistics for the matches.
   2. 'league_scraper.py' is just a tool to capture a league's table status at the end of the season. The details gathered are mostly just a list of the teams, points, goals etc. Overview tool that can also be used in conjunction with 'game_scraper.py' in case it is to be expanded to cover the whole league at once (pending, as this would be a lot of data from the source, so likely not to be implemented without confirmation).
-  3.'match_list_scraper.py' is a legacy file which just contains the match list scraping engine that is used in the 'game_scraper.py'. Currently fully integrated in the latter, so kept for posterity purposes.
+  3. 'match_list_scraper.py' is a legacy file which just contains the match list scraping engine that is used in the 'game_scraper.py'. Currently fully integrated in the latter, so kept for posterity purposes.
   4. 'team_scraper.py' is the same as the 'league_scraper.py' as it is used to capture a team's, player-level detail for their seasons. Currently it is done on a season-by-season basis, to be expanded to run through all seasons at once. Used to capture player, and team overall details, especially player over-90s.
 
 - **Test_Files:** Is a folder for some of the test.py files that I use as placeholders, while testing specific behavior added to the scraping tools or calculators. None of these are active production files however, and often can be empty if I'm not in the middle of a specific code test.
