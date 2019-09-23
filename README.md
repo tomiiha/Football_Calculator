@@ -24,7 +24,7 @@ Personal project to get a deeper understanding of sports analytics, to leverage 
 
 ### Scraping Engine Optimizations:
 
-- [x] Increase the frequency of status indicators.
+- [x] Increase the frequency of status indicators (for transparency, and speed analysis).
 - [ ] Move data production into an SQL database, instead of files.
 - [ ] Improve on statistics parsing speeds.
 - [ ] Automate team list for calculating all teams at once for a season - currently all manual entry per-team.
