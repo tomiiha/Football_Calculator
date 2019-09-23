@@ -4,7 +4,7 @@ Personal project to get a deeper understanding of sports analytics, to leverage 
 
 - **Calculators:** Contains the calculators used to do analysis on the scraped data files. 
 
-  1. 'season_calcs.py' is a program that at this time simply recaps the team season-by-season data, and creates a summary of it from 2002-present. This includes all main captured data, as well as calculated over-90 calculations.
+ 1. 'season_calcs.py' is a program that at this time simply recaps the team season-by-season data, and creates a summary of it from 2002-present. This includes all main captured data, as well as calculated over-90 calculations.
 
 - **Data_Files:** Has some example data files within it for calculation testing (these have been scraped, and produced as-is). Contains example files of scraped data, and output format from main scraping engines.
 
