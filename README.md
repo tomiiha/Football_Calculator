@@ -25,6 +25,7 @@ Personal project to get a deeper understanding of sports analytics, to leverage 
 ### Scraping Engine Optimizations:
 
 - [x] Increase the frequency of status indicators (for transparency, and speed analysis).
+- [ ] Data cleaning needs to be implemented in a larger-scale, to check conceded statistics.
 - [ ] Move data production into an SQL database, instead of files.
 - [ ] Improve on statistics parsing speeds.
 - [ ] Automate team list for calculating all teams at once for a season - currently all manual entry per-team.
@@ -35,10 +36,15 @@ Personal project to get a deeper understanding of sports analytics, to leverage 
 - [ ] Replicate FiveThirtyEight model for team success predictions.
 - [ ] Apply some basic models (TBD) for team level analytics.
 
-### Legend and Notes:
+### Legend:
 
 - Calculation notation: Goals (G), Assists (A), Penalties (PK), Shots on Target (SOT), Fouls (F), Cards (C), Per 90 Minutes (/90), Total Minutes Played (TM).
+
+### Notes:
+
 - Math for over 90s is simple, for example G+A-PK/90: ((G-PK)+A)/(TM/90). The float result effectively will define a simple performance metric to start with. Attached in the Proveouts folder is also a manual Prove_Out of some of the metrics, as fbref has them (Per90 Manual Prove Out.xlsx).
+- All conceded statistics are based on opponent performance against the team. Shots conceded will be shots for the opposition, along with SOT being the shots on goal that were conceded.
+- (SOT-Saves) should indicate the goals conceded as well - this will require some testing and data spot-checking, as there have been some cases where this hasn't been the case.
 
 ### Data Sources:
 - https://www.github.com/jalapic/engsoccerdata
