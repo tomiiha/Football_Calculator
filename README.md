@@ -27,10 +27,10 @@ Personal project to get a deeper understanding of sports analytics, to leverage 
 - [x] Increase the frequency of status indicators.
 - [ ] Move data production into an SQL database, instead of files.
 - [ ] Improve on statistics parsing speeds.
+- [ ] Automate team list for calculating all teams at once for a season - currently all manual entry per-team.
 
 ### Currently building for the calculation engine:
 
-- [ ] Automate team list for calculating all teams at once - currently dependent on manual entry.
 - [ ] Calculate player performance throughout seasons (some stats are not shared on a player -level).
 - [ ] Replicate FiveThirtyEight model for team success predictions.
 - [ ] Apply some basic models (TBD) for team level analytics.
