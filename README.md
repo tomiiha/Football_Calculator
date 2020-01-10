@@ -31,6 +31,7 @@ Personal project to get a deeper understanding of sports analytics, to leverage 
 
 ### Scraping Engine Optimizations:
 
+- [ ] Add timing captures for process logging - needed for proper troubleshooting in optimization.
 - [x] Increase the frequency of status indicators (for transparency, and speed analysis).
 - [ ] Data cleaning needs to be implemented in a larger-scale, to check conceded statistics.
 - [ ] Move data production into an SQL database, instead of files.
