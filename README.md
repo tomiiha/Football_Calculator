@@ -52,7 +52,7 @@ Personal project to get a deeper understanding of sports analytics, to leverage 
 
 - Math for over 90s is simple, for example G+A-PK/90: ((G-PK)+A)/(TM/90). The float result effectively will define a simple performance metric to start with. Attached in the Proveouts folder is also a manual Prove_Out of some of the metrics, as fbref has them (Per90 Manual Prove Out.xlsx).
 - All conceded statistics are based on opponent performance against the team. Shots conceded will be shots for the opposition, along with SOT being the shots on goal that were conceded.
-- (SOT-Saves) should indicate the goals conceded as well - this will require some testing and data spot-checking, as there have been some cases where this hasn't been the case.
+- (SOT-Saves) should indicate the goals conceded as well - this will require some testing and data spot-checking, as there have been some instances where this hasn't been the case.
 
 ### Data Sources:
 - https://www.github.com/jalapic/engsoccerdata
