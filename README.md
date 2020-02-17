@@ -8,6 +8,8 @@ Personal project to get a deeper understanding of sports analytics, to leverage 
 
 - **Data_Files:** Has some example data files within it for calculation testing (these have been scraped, and produced as-is). Contains example files of scraped data, and output format from main scraping engines.
 
+- **Database:** Contains files for excel file processing, to add them to an SQL database for processing. Eventually this should be swapper fully for the scraping tool to do so instead of excel, but for testing purposes should be fine via files.
+
 - **Prove_Outs:** Is just a folder for some example manual calculations for the over-90 metrics, and any other calculation prove-outs that are produced.
 
 - **Scraping_Tools:** This folder contains the main scraping and parsing engines used for data gathering (specifically made for fbref.com). The programs gather, aggregate, parse, and output data to excel sheets that are used to feed the calculation engine. This will be migrated eventually to an SQL environment, but current will run on excel sheets.
