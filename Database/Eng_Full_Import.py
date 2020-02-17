@@ -1,5 +1,4 @@
-# Code to import fbref files for historical SQL db creation.
-# Right now running on a local instance only, will check cloud comp later.
+# Import https://www.github.com/jalapic/engsoccerdata csv file.
 
 import sqlite3 as sq
 import pandas as pd
