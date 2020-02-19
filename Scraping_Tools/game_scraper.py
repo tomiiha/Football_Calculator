@@ -7,10 +7,10 @@ import xlsxwriter as xsl
 
 # Define what team we want the data for
 team_to_scrape = "Northampton Town"
+season_numb = "2018-2019"
 
 # URL for season to capture
-season_to_parse = 'https://fbref.com/en/squads/986a26c1/2018-2019/Northampton-Town'
-season_numb = "2018-2019"
+season_to_parse = "https://fbref.com/en/squads/986a26c1/2018-2019/" + team_to_scrape.replace(' ','-')
 
 # Capture the season overview page
 page = reqs.get(season_to_parse)
