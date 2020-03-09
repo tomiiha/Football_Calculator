@@ -7,6 +7,7 @@ import sqlite3 as sq
 import csv
 import os
 
+column_names = []
 
 # Get files first for batch processing
 data_files = []
@@ -15,9 +16,11 @@ for x in file_list:
     if x[-4:] == '.csv':
         data_files.append(x)
 
-print(data_files)
-
 # set SQL - 'football.db' as a repository.
 conn = sq.connect("football.db")
 cur = conn.cursor()
-cur.execute("CREATE TABLE")
+
+for y in data_files:
+    tab_name = y
+    print("CREATE TABLE " + tab_name)
+    #cur.execute("CREATE TABLE" + tab_name + )
