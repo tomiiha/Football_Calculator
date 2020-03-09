@@ -4,6 +4,20 @@
 
 # Packages
 import sqlite3 as sq
+import csv
+import os
+
+
+# Get files first for batch processing
+data_files = []
+file_list = os.listdir()
+for x in file_list:
+    if x[-4:] == '.csv':
+        data_files.append(x)
+
+print(data_files)
 
 # set SQL - 'football.db' as a repository.
-connection = sq.connect("football.db")
+conn = sq.connect("football.db")
+cur = conn.cursor()
+cur.execute("CREATE TABLE")
