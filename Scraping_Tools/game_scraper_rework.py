@@ -16,6 +16,7 @@ def season_list(team_to_scrape, season_to_scrape):
         match_list.append(str(full_link))
     return match_list
 
+# match_list[0:1] for testing.
 def match_parser(match_list):
     for link in match_list[0:1]:
         page = reqs.get(link)
