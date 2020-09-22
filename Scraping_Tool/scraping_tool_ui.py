@@ -10,16 +10,21 @@ def initial_load():
 
 # Pick league.
 def league_picker(data):
-    league_choice = 'EFL League One'
+    league_list = []
+    for y in data:
+        if y['Competition'] is not None and y['Competition'] not in league_list:
+            league_list.append(y['Competition'])
+    league_choice = league_list[1]
     team_list = []
     for x in data:
         if x['Competition'] == league_choice:
             team_list.append(x['Team'])
+    print(league_list)
     return team_picker(team_list)
-    
+
 # Pick team
 def team_picker(team_list):
     print(team_list)
     return
-    
+
 initial_load()
