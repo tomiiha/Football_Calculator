@@ -27,9 +27,20 @@ def team_list_create(league_list, data):
             team_list.append(x['Team'])
     return team_picker(team_list)
 
-# Pick team
-def team_picker(team_list):
-    print(team_list)
-    return
-
-initial_load()
+# UI content
+def ui_content(league_list):
+    league_box=Dropdown(
+        options=league_list,
+        value='Choose League',
+        description='Select Sector:',
+        layout={'width': 'max-content'},
+        style = {'description_width': 'initial'},
+        disabled=False,
+    )
+    return ui_final(league_box):
+    
+# UI Execution    
+def ui_final(league_box):
+    ui = VBox(layout=Layout(width='2000px',margin = ' 20px 0 0 20px '))
+    ui.children = [sector_box, snapshot_time_box, machine_box, snapshot_date, run_button, status_label, out]
+    return display(ui)
