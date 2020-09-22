@@ -19,7 +19,6 @@ def league_picker(data):
     for x in data:
         if x['Competition'] == league_choice:
             team_list.append(x['Team'])
-    print(league_list)
     return team_picker(team_list)
 
 # Pick team
