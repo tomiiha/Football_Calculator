@@ -4,9 +4,9 @@ Personal project to get a deeper understanding of sports analytics, to leverage 
 
 - **Tools:** This folder contains the main scraping and parsing engines used for data gathering (specifically made for fbref.com). The programs gather, aggregate, parse, and output data to JSON files that are used to feed the calculation engine. Currently old parsing files are migrated and combined into one scraping engine running on a Jupyter Notebook - Once completed, a pure python file will be generated for ease of running in a GUI.
 
-1. *'match_data_parser.ipynb'* is the main Jupyter-based GUI for downloading a full team database, as well as capturing match-level data for a team, on a season-by-season basis. These are produced into JSON files to be consumed by the calculation engine (for now each season's games dumped into one file respectively).
+  1. *'match_data_parser.ipynb'* is the main Jupyter-based GUI for downloading a full team database, as well as capturing match-level data for a team, on a season-by-season basis. These are produced into JSON files to be consumed by the calculation engine (for now each season's games dumped into one file respectively).
 
-2. *'match_data_calculator.ipynb'* is the main game instance calculation engine, that will capture match-level data as per generated on the above scraping tool. Currently in a very early interation, and will need refinement when the parser is fully completed.
+  2. *'match_data_calculator.ipynb'* is the main game instance calculation engine, that will capture match-level data as per generated on the above scraping tool. Currently in a very early interation, and will need refinement when the parser is fully completed.
 
 - **Prove_Outs:** Is just a folder for some example manual calculations for the over-90 metrics, and any other calculation prove-outs that are produced.
 
