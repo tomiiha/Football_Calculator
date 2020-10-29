@@ -7,6 +7,8 @@ Personal project to get a deeper understanding of sports analytics, to leverage 
   1. *'match_data_parser.ipynb'* is the main Jupyter-based GUI for downloading a full team database, as well as capturing match-level data for a team, on a season-by-season basis. These are produced into JSON files to be consumed by the calculation engine (for now each season's games dumped into one file respectively).
 
   2. *'match_data_calculator.ipynb'* is the main game instance calculation engine, that will capture match-level data as per generated on the above scraping tool. Currently in a very early interation, and will need refinement when the parser is fully completed.
+  
+  3. 'MongoDB' is a test to implement JSON files in a DB instead of local files. Currently just trialing if this is feasible.
 
 - **Reading:** Contains all the materials that are used for inspiration on the project, as well as some prove-outs of my methods on some simple calculations for illustrative purposes.
 
