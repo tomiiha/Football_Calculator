@@ -8,9 +8,13 @@ Personal project to get a deeper understanding of sports analytics, to leverage 
 
   2. *'match_data_calculator.ipynb'* is the main game instance calculation engine, that will capture match-level data as per generated on the above scraping tool. Currently in a very early interation, and will need refinement when the parser is fully completed.
 
-- **Prove_Outs:** Is just a folder for some example manual calculations for the over-90 metrics, and any other calculation prove-outs that are produced.
+- **Reading:** Contains all the materials that are used for inspiration on the project, as well as some prove-outs of my methods on some simple calculations for illustrative purposes.
 
-- **White_Papers:** Contains all white papers that are used as inspiration for the calculations, as well as some of which will be also used to produce some prove-outs of the models. This list of course isn't exhaustive, but is both the inspiration behing this, as well as the source of some further thought on the latter half of the build. For now these are rather far from full implementation.
+  1. *'Prove_Outs'* has example manual calculations for the over-90 metrics, and any other calculation prove-outs that are produced.
+  
+  2. *'White_Papers'* contains all white papers that are used as inspiration for the calculations, as well as some of which will be also used to produce some prove-outs of the models. This list of course isn't exhaustive, but is both the inspiration behing this, as well as the source of some further thought on the latter half of the build. For now these are rather far from full implementation.
+  
+- **Old_Files:** This is a dump folder where I have placed all my older variants of the parsing, and calculation engines. These are no longer in use, and are simple retained for posterity. Will likely remove these eventually, however for now I am keeping them in place for my own reference, and in case anyone wants to see the progress of the project from its initial iteration.
 
 ### Currently building for the data handler:
 
