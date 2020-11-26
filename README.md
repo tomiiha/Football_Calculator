@@ -10,6 +10,8 @@ Personal project to get a deeper understanding of sports analytics, to leverage 
   
   3. 'MongoDB' is a test to implement JSON files in a DB instead of local files. Currently just trialing if this is feasible.
 
+- **Tools:** API used to establish DB connections (to MongoDB), and data captures for calculator processing. Currently only runs to test connectivity.
+
 - **Reading:** Contains all the materials that are used for inspiration on the project, as well as some prove-outs of my methods on some simple calculations for illustrative purposes.
 
   1. *'Prove_Outs'* has example manual calculations for the over-90 metrics, and any other calculation prove-outs that are produced.
