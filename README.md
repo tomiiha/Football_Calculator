@@ -8,7 +8,7 @@ Personal project to get a deeper understanding of sports analytics, to leverage 
 
   2. *'data_calculator.ipynb'* is the main game instance calculation engine, that will capture match-level data as per generated on the above scraping tool. Currently in a very early interation, and will need refinement when the parser is fully completed.
 
-- **Database_API:** API used to establish DB connections (to MongoDB), and data captures for calculator processing. Currently only runs to test connectivity.
+- **Database_API:** API used to establish DB connections (to MongoDB in my case), and data captures for calculator processing. *Currently only runs to test connectivity only - consider non-functional for the calculator.*
 
 - **Reading:** Contains all the materials that are used for inspiration on the project, as well as some prove-outs of my methods on some simple calculations for illustrative purposes.
 
