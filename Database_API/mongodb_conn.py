@@ -4,25 +4,23 @@ import ast
 def conn_establish():
     # Pass credentials out of credentials file.
     credentials = ast.literal_eval(open('credentials.txt','r').read())
-    
-    # Connection string to pass to pymongo
-    conn_url = "mongodb+srv://" + credentials['username'] + ":" + credentials['password'] + "@sandbox.r1tr0.mongodb.net/" + credentials['db_name'] + "?retryWrites=true&w=majority"
+    conn_url = "mongodb+srv://" + credentials['username'] + ":" + credentials['password'] + "@maindb.r1tr0.mongodb.net/" + credentials['db_name'] + "?retryWrites=true&w=majority"
     client = pymongo.MongoClient(conn_url)
-    return conn_test(client)
+    return client
 
 # Run connection - test and run, otherwise close connection straight.
-def conn_test(client):
+def conn_start():
     try:
-        client.server_info()
-        return print("Connection Established")
+        status_msg = conn_establish().server_info()
+        conn_time = status_msg['operationTime']
+        return conn_time
     except:
-        print("Connection failed")
-        close_conn(client)
+        return "Connection failed"
 
-# Terminate connection, or report on inability to start.
-def close_conn(client):
+# Terminate connection on-demand.
+def conn_close():
     try:
-        client.close()
-        return
+        conn_establish().close()
+        return 'Connection closed'
     except:
         return print("No Connection Established")
