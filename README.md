@@ -27,7 +27,8 @@ Personal project to get a deeper understanding of sports analytics, to leverage 
 - [ ] Built simple statistical inference for 'conceded' statistics.
 - [x] Capture main game statistics.
 - [ ] Adding some additional metrics to be captured.
-- [ ] Add a (SQL) database to handle match data, instead of individual JSON files.
+- [x] Add a database to handle match data, instead of individual JSON files.
+- [ ] DB dump JSON files, and then create checks for db - run both locally and in cluster.
 
 ### Scraping Engine Optimizations:
 
